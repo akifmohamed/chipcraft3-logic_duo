@@ -3,7 +3,7 @@
 Report : reference
 Design : water_sched
 Version: W-2024.09-SP5-3
-Date   : Fri Sep 25 21:12:17 2026
+Date   : Fri Sep 25 22:10:10 2026
 ****************************************
 
 Attributes:
@@ -54,7 +54,7 @@ NAND3X0_RVT        saed32rvt_ss0p95v125c
 NAND4X0_RVT        saed32rvt_ss0p95v125c
                                   2.033152       2      4.066304  
 NBUFFX2_RVT        saed32rvt_ss0p95v125c
-                                  2.033152       3      6.099456  
+                                  2.033152       2      4.066304  
 NOR2X0_RVT         saed32rvt_ss0p95v125c
                                   2.541440       2      5.082880  
 NOR3X0_RVT         saed32rvt_ss0p95v125c
@@ -78,5 +78,5 @@ OR2X1_RVT          saed32rvt_ss0p95v125c
 OR3X1_RVT          saed32rvt_ss0p95v125c
                                   2.541440       1      2.541440  
 -----------------------------------------------------------------------------
-Total 29 references                                  1760.709652
+Total 29 references                                  1758.676500
 1

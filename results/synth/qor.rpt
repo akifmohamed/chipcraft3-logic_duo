@@ -3,7 +3,7 @@
 Report : qor
 Design : water_sched
 Version: W-2024.09-SP5-3
-Date   : Fri Sep 25 21:12:17 2026
+Date   : Fri Sep 25 22:10:10 2026
 ****************************************
 
 
@@ -25,12 +25,12 @@ Date   : Fri Sep 25 21:12:17 2026
   -----------------------------------
   Hierarchical Cell Count:          0
   Hierarchical Port Count:          0
-  Leaf Cell Count:                549
-  Buf/Inv Cell Count:             111
-  Buf Cell Count:                   3
+  Leaf Cell Count:                548
+  Buf/Inv Cell Count:             110
+  Buf Cell Count:                   2
   Inv Cell Count:                 108
   CT Buf/Inv Cell Count:            0
-  Combinational Cell Count:       427
+  Combinational Cell Count:       426
   Sequential Cell Count:          122
   Macro Count:                      0
   -----------------------------------
@@ -38,21 +38,21 @@ Date   : Fri Sep 25 21:12:17 2026
 
   Area
   -----------------------------------
-  Combinational Area:      892.553733
+  Combinational Area:      890.520581
   Noncombinational Area:   868.155919
-  Buf/Inv Area:            143.845505
-  Total Buffer Area:             6.10
+  Buf/Inv Area:            141.812353
+  Total Buffer Area:             4.07
   Total Inverter Area:         137.75
   Macro/Black Box Area:      0.000000
-  Net Area:                425.697822
+  Net Area:                432.087649
   -----------------------------------
-  Cell Area:              1760.709652
-  Design Area:            2186.407475
+  Cell Area:              1758.676500
+  Design Area:            2190.764150
 
 
   Design Rules
   -----------------------------------
-  Total Number of Nets:           617
+  Total Number of Nets:           616
   Nets With Violations:             0
   Max Trans Violations:             0
   Max Cap Violations:               0
@@ -63,12 +63,12 @@ Date   : Fri Sep 25 21:12:17 2026
 
   Compile CPU Statistics
   -----------------------------------------
-  Resource Sharing:                    0.16
-  Logic Optimization:                  0.05
-  Mapping Optimization:                0.26
+  Resource Sharing:                    0.00
+  Logic Optimization:                  0.00
+  Mapping Optimization:                0.00
   -----------------------------------------
-  Overall Compile Time:                2.76
-  Overall Compile Wall Clock Time:     3.19
+  Overall Compile Time:                1.00
+  Overall Compile Wall Clock Time:     1.22
 
   --------------------------------------------------------------------
 

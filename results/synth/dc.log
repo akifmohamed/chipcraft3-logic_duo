@@ -32,7 +32,7 @@ Please use '-no_save' simv switch to avoid this.
                         https://solvnetplus.synopsys.com)
 Initializing...
 Initializing gui preferences from file  /home/masthan5097/.synopsys_dc_gui/preferences.tcl
-Current time:       Fri Sep 25 21:12:11 2026
+Current time:       Fri Sep 25 22:10:02 2026
 Hostname:           sd13.ece.kalasalingam.ac.in
 CPU Model:          12th Gen Intel(R) Core(TM) i5-12400
 CPU Details:        Cores = 12 : Sockets = 1 : Cache Size = 18432 KB : Freq = 2.50 GHz
@@ -44,7 +44,7 @@ Tmp Filesystem:     / mounted to /dev/sda6
 Work Disk:          284 GB (Free  48 GB)
 Tmp Disk:           284 GB (Free  48 GB)
 
-CPU Load: 6%, Ram Free: 6 GB, Swap Free: 7 GB, Work Disk Free: 48 GB, Tmp Disk Free: 48 GB
+CPU Load: 3%, Ram Free: 6 GB, Swap Free: 7 GB, Work Disk Free: 48 GB, Tmp Disk Free: 48 GB
 #=====================================================================
 # dc_synth.tcl  —  RTL -> gate-level netlist with Synopsys Design Compiler
 # Team LOGIC DUO | ChipCraft 3.0
@@ -252,7 +252,7 @@ report_clock  > $OUT/clocks.rpt
 # 3) synthesis / optimization  (PPA = Power Performance Area)
 #---------------------------------------------------------------------
 # area goal: push area down
-set_max_area 0
+set_max_area 2500
 1
 # power switches (cheap wins for the 30% "synthesis quality" score)
 set_dynamic_optimization true
@@ -267,7 +267,7 @@ set cu_ok [compile_ultra]
 Loading db file '/home/masthan5097/synopsys/dcs/syn/W-2024.09-SP5-3/libraries/syn/dw_foundation.sldb'
 Warning: DesignWare synthetic library dw_foundation.sldb is added to the synthetic_library in the current command. (UISN-40)
 Information: Performing power optimization. (PWR-850)
-CPU Load: 7%, Ram Free: 6 GB, Swap Free: 7 GB, Work Disk Free: 48 GB, Tmp Disk Free: 48 GB
+CPU Load: 3%, Ram Free: 5 GB, Swap Free: 7 GB, Work Disk Free: 48 GB, Tmp Disk Free: 48 GB
 Alib files are up-to-date.
 Warning: DesignWare synthetic library dw_foundation.sldb is added to the synthetic_library in the current command. (UISN-40)
 Information: Evaluating DesignWare library utilization. (UISN-27)
@@ -314,7 +314,7 @@ Module: DW01_NAND2, Ports: 3, Input: 2, Output: 1, Inout: 0
 Module: DW01_NAND2, Registers: 0, Async set/reset: 0, Sync set/reset: 0
   Building model 'DW01_NAND2'
 Information: Ungrouping 0 of 1 hierarchies before Pass 1 (OPT-775)
-CPU Load: 7%, Ram Free: 6 GB, Swap Free: 7 GB, Work Disk Free: 48 GB, Tmp Disk Free: 48 GB
+CPU Load: 3%, Ram Free: 5 GB, Swap Free: 7 GB, Work Disk Free: 48 GB, Tmp Disk Free: 48 GB
 Information: State dependent leakage is now switched from on to off.
 
   Beginning Pass 1 Mapping
@@ -323,7 +323,7 @@ Information: State dependent leakage is now switched from on to off.
 Information: Added key list 'DesignWare' to design 'water_sched'. (DDB-72)
 Information: The register 'state_reg[2]' is a constant and will be removed. (OPT-1206)
  Implement Synthetic for 'water_sched'.
-CPU Load: 7%, Ram Free: 6 GB, Swap Free: 7 GB, Work Disk Free: 48 GB, Tmp Disk Free: 48 GB
+CPU Load: 4%, Ram Free: 5 GB, Swap Free: 7 GB, Work Disk Free: 48 GB, Tmp Disk Free: 48 GB
 
   Updating timing information
 Information: Updating design information... (UID-85)
@@ -414,76 +414,76 @@ Threshold voltage group cell usage:
 
 Threshold voltage group cell usage:
 >> saed32cell_svt 100.00%
-    0:00:01    1767.1      0.00       0.0       0.0                           98478904.0000
-    0:00:01    1767.1      0.00       0.0       0.0                           98478904.0000
+    0:00:02    1767.1      0.00       0.0       0.0                           98478904.0000
+    0:00:02    1767.1      0.00       0.0       0.0                           98478904.0000
 
   Beginning WLM Backend Optimization
   --------------------------------------
-    0:00:01    1765.5      0.00       0.0       0.0                           98348800.0000
-    0:00:01    1765.5      0.00       0.0       0.0                           98348800.0000
-    0:00:01    1765.5      0.00       0.0       0.0                           98348800.0000
-    0:00:01    1765.5      0.00       0.0       0.0                           98348800.0000
-    0:00:01    1765.5      0.00       0.0       0.0                           98348800.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           95533904.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           95533904.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           95533904.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           95533904.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           95533904.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           95533904.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           95533904.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           95533904.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           95533904.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           95533904.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           95533904.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           95533904.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           95533904.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           95533904.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           95533904.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           95533904.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           95533904.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           95533904.0000
-    0:00:01    1764.5      0.00       0.0       0.0                           95533904.0000
+    0:00:02    1765.5      0.00       0.0       0.0                           98348800.0000
+    0:00:02    1765.5      0.00       0.0       0.0                           98348800.0000
+    0:00:02    1765.5      0.00       0.0       0.0                           98348800.0000
+    0:00:02    1765.5      0.00       0.0       0.0                           98348800.0000
+    0:00:02    1765.5      0.00       0.0       0.0                           98348800.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           95533904.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           95533904.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           95533904.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           95533904.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           95533904.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           95533904.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           95533904.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           95533904.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           95533904.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           95533904.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           95533904.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           95533904.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           95533904.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           95533904.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           95533904.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           95533904.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           95533904.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           95533904.0000
+    0:00:02    1764.5      0.00       0.0       0.0                           95533904.0000
 
                                   TOTAL                                                
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
   --------- --------- --------- --------- --------- ------------------------- ---------
-    0:00:01    1764.5      0.00       0.0       0.0                           95533904.0000
-    0:00:01    1760.7      0.00       0.0       0.0                           95222488.0000
-    0:00:01    1760.7      0.00       0.0       0.0                           95222488.0000
-    0:00:01    1760.7      0.00       0.0       0.0                           95222488.0000
-    0:00:01    1760.7      0.00       0.0       0.0                           95156200.0000
-    0:00:01    1760.7      0.00       0.0       0.0                           95156200.0000
-    0:00:01    1760.7      0.00       0.0       0.0                           95156200.0000
-    0:00:01    1760.7      0.00       0.0       0.0                           95156200.0000
-    0:00:01    1760.7      0.00       0.0       0.0                           95156200.0000
-    0:00:01    1760.7      0.00       0.0       0.0                           95156200.0000
-    0:00:01    1760.7      0.00       0.0       0.0                           95156200.0000
-CPU Load: 7%, Ram Free: 6 GB, Swap Free: 7 GB, Work Disk Free: 48 GB, Tmp Disk Free: 48 GB
+    0:00:02    1764.5      0.00       0.0       0.0                           95533904.0000
+    0:00:02    1760.7      0.00       0.0       0.0                           95222488.0000
+    0:00:02    1760.7      0.00       0.0       0.0                           95222488.0000
+    0:00:02    1760.7      0.00       0.0       0.0                           95222488.0000
+    0:00:02    1760.7      0.00       0.0       0.0                           95156200.0000
+    0:00:02    1760.7      0.00       0.0       0.0                           95156200.0000
+    0:00:02    1760.7      0.00       0.0       0.0                           95156200.0000
+    0:00:02    1760.7      0.00       0.0       0.0                           95156200.0000
+    0:00:02    1760.7      0.00       0.0       0.0                           95156200.0000
+    0:00:02    1760.7      0.00       0.0       0.0                           95156200.0000
+    0:00:02    1760.7      0.00       0.0       0.0                           95156200.0000
+CPU Load: 4%, Ram Free: 5 GB, Swap Free: 7 GB, Work Disk Free: 48 GB, Tmp Disk Free: 48 GB
 Loading db file '/home/masthan5097/chipcraft_libs/saed32rvt_ss0p95v125c.db'
 
 
@@ -494,7 +494,7 @@ Note: Symbol # after min delay cost means estimated hold TNS across all active s
   ---------------------
 Information: State dependent leakage is now switched from off to on.
 Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
-CPU Load: 7%, Ram Free: 6 GB, Swap Free: 7 GB, Work Disk Free: 48 GB, Tmp Disk Free: 48 GB
+CPU Load: 4%, Ram Free: 5 GB, Swap Free: 7 GB, Work Disk Free: 48 GB, Tmp Disk Free: 48 GB
 Information: Total number of MV cells in the design.
 ----------------------------------------------------------------------------------------------------
  MV Cells                                           Total Number                                   
@@ -522,6 +522,66 @@ if {!$cu_ok} {
 }
 echo ">>> compile_ultra OK"
 >>> compile_ultra OK
+echo ">>> v2: extra area reduction pass"
+>>> v2: extra area reduction pass
+optimize_netlist -area
+Warning: DesignWare synthetic library dw_foundation.sldb is added to the synthetic_library in the current command. (UISN-40)
+Information: Performing power optimization. (PWR-850)
+CPU Load: 4%, Ram Free: 5 GB, Swap Free: 7 GB, Work Disk Free: 48 GB, Tmp Disk Free: 48 GB
+Alib files are up-to-date.
+
+Information: There are 1 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+
+
+  Updating timing information
+Information: The library cell 'PMT3_RVT' in the library 'saed32rvt_ss0p95v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'PMT2_RVT' in the library 'saed32rvt_ss0p95v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'PMT1_RVT' in the library 'saed32rvt_ss0p95v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'NMT3_RVT' in the library 'saed32rvt_ss0p95v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'NMT2_RVT' in the library 'saed32rvt_ss0p95v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'NMT1_RVT' in the library 'saed32rvt_ss0p95v125c' is not characterized for internal power. (PWR-536)
+Information: The target library(s) contains cell(s), other than black boxes, that are not characterized for internal power. (PWR-24)
+
+
+  Beginning Area Optimization
+  -----------------------------
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:00    1760.7      0.00       0.0       0.0                           95156200.0000
+    0:00:00    1758.7      0.00       0.0       0.0                           94954368.0000
+Loading db file '/home/masthan5097/chipcraft_libs/saed32rvt_ss0p95v125c.db'
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+CPU Load: 4%, Ram Free: 5 GB, Swap Free: 7 GB, Work Disk Free: 48 GB, Tmp Disk Free: 48 GB
+Information: Total number of MV cells in the design.
+----------------------------------------------------------------------------------------------------
+ MV Cells                                           Total Number                                   
+----------------------------------------------------------------------------------------------------
+ Level Shifter:                                     0                                             
+ Enable Level Shifter:                              0                                             
+ Isolation Cell:                                    0                                             
+ Retention Cell:                                    0                                             
+ Retention Clamp Cell:                              0                                             
+ Switch Cell:                                       0                                             
+ Always-On Cell:                                    0                                             
+ Repeater Cell:                                     0                                             
+
+----------------------------------------------------------------------------------------------------
+Unmapped MV Cells 
+----------------------------------------------------------------------------------------------------
+0 Isolation Cells are unmapped 
+0 Retention Clamp Cells are unmapped 
+----------------------------------------------------------------------------------------------------
+1
 # if timing still failing (negative slack), try:
 #   compile_ultra -retime
 # if area too big, try:
@@ -554,7 +614,7 @@ exit
 
 Memory usage for this session 232 Mbytes.
 Memory usage for this session including child processes 232 Mbytes.
-CPU usage for this session 4 seconds ( 0.00 hours ).
-Elapsed time for this session 13 seconds ( 0.00 hours ).
+CPU usage for this session 5 seconds ( 0.00 hours ).
+Elapsed time for this session 12 seconds ( 0.00 hours ).
 
 Thank you...

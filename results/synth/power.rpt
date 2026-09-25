@@ -1,10 +1,13 @@
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
  
 ****************************************
 Report : power
         -analysis_effort low
 Design : water_sched
 Version: W-2024.09-SP5-3
-Date   : Fri Sep 25 21:12:17 2026
+Date   : Fri Sep 25 22:10:10 2026
 ****************************************
 
 
@@ -35,12 +38,12 @@ Attributes
 i - Including register clock pin internal power
 
 
-  Cell Internal Power  =  73.0469 uW   (98%)
-  Net Switching Power  =   1.2890 uW    (2%)
+  Cell Internal Power  =  73.5055 uW   (98%)
+  Net Switching Power  =   1.3213 uW    (2%)
                          ---------
-Total Dynamic Power    =  74.3359 uW  (100%)
+Total Dynamic Power    =  74.8268 uW  (100%)
 
-Cell Leakage Power     =  86.1365 uW
+Cell Leakage Power     =  85.9814 uW
 
 
                  Internal         Switching           Leakage            Total
@@ -49,10 +52,10 @@ Power Group      Power            Power               Power              Power  
 io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
 memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
 black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
-clock_network     69.1847            0.0000            0.0000           69.1847  (  43.11%)  i
-register           1.7167            0.1136        5.6138e+07           57.9680  (  36.12%)
+clock_network     69.1847            0.0000            0.0000           69.1847  (  43.02%)  i
+register           1.9959            0.1305        5.6289e+07           58.4149  (  36.33%)
 sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
-combinational      2.1455            1.1754        2.9999e+07           33.3197  (  20.76%)
+combinational      2.3249            1.1908        2.9693e+07           33.2086  (  20.65%)
 --------------------------------------------------------------------------------------------------
-Total             73.0470 uW         1.2890 uW     8.6136e+07 pW       160.4725 uW
+Total             73.5055 uW         1.3213 uW     8.5981e+07 pW       160.8083 uW
 1

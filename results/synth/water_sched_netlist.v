@@ -1,7 +1,7 @@
 /////////////////////////////////////////////////////////////
 // Created by: Synopsys DC Ultra(TM) in wire load mode
 // Version   : W-2024.09-SP5-3
-// Date      : Fri Sep 25 21:12:17 2026
+// Date      : Fri Sep 25 22:10:10 2026
 /////////////////////////////////////////////////////////////
 
 
@@ -58,7 +58,7 @@ module water_sched ( clk, rst_n, zone_req, zone_prio, zone_demand,
          n534, n535, n536, n537, n538, n539, n540, n541, n542, n543, n544,
          n545, n546, n547, n548, n549, n550, n551, n552, n553, n554, n555,
          n556, n557, n558, n559, n560, n561, n562, n563, n564, n565, n566,
-         n567, n568, n569, n570, n571, n572, n573;
+         n567, n568, n569, n570, n572, n573;
   wire   [15:0] timer;
   wire   [3:0] win_r;
   assign status[2] = 1'b0;
@@ -227,29 +227,29 @@ module water_sched ( clk, rst_n, zone_req, zone_prio, zone_demand,
         cycles_done[24]) );
   DFFARX1_RVT \cycles_done_reg[23]  ( .D(n233), .CLK(clk), .RSTB(rst_n), .Q(
         cycles_done[23]) );
-  DFFARX1_RVT \cycles_done_reg[22]  ( .D(n234), .CLK(clk), .RSTB(n571), .Q(
+  DFFARX1_RVT \cycles_done_reg[22]  ( .D(n234), .CLK(clk), .RSTB(rst_n), .Q(
         cycles_done[22]) );
-  DFFARX1_RVT \cycles_done_reg[21]  ( .D(n235), .CLK(clk), .RSTB(n571), .Q(
+  DFFARX1_RVT \cycles_done_reg[21]  ( .D(n235), .CLK(clk), .RSTB(rst_n), .Q(
         cycles_done[21]) );
-  DFFARX1_RVT \cycles_done_reg[20]  ( .D(n236), .CLK(clk), .RSTB(n571), .Q(
+  DFFARX1_RVT \cycles_done_reg[20]  ( .D(n236), .CLK(clk), .RSTB(rst_n), .Q(
         cycles_done[20]) );
-  DFFARX1_RVT \cycles_done_reg[19]  ( .D(n237), .CLK(clk), .RSTB(n571), .Q(
+  DFFARX1_RVT \cycles_done_reg[19]  ( .D(n237), .CLK(clk), .RSTB(rst_n), .Q(
         cycles_done[19]) );
-  DFFARX1_RVT \cycles_done_reg[18]  ( .D(n238), .CLK(clk), .RSTB(n571), .Q(
+  DFFARX1_RVT \cycles_done_reg[18]  ( .D(n238), .CLK(clk), .RSTB(rst_n), .Q(
         cycles_done[18]) );
-  DFFARX1_RVT \cycles_done_reg[17]  ( .D(n239), .CLK(clk), .RSTB(n571), .Q(
+  DFFARX1_RVT \cycles_done_reg[17]  ( .D(n239), .CLK(clk), .RSTB(rst_n), .Q(
         cycles_done[17]) );
-  DFFARX1_RVT \cycles_done_reg[16]  ( .D(n240), .CLK(clk), .RSTB(n571), .Q(
+  DFFARX1_RVT \cycles_done_reg[16]  ( .D(n240), .CLK(clk), .RSTB(rst_n), .Q(
         cycles_done[16]) );
-  DFFARX1_RVT \cycles_done_reg[15]  ( .D(n241), .CLK(clk), .RSTB(n571), .Q(
+  DFFARX1_RVT \cycles_done_reg[15]  ( .D(n241), .CLK(clk), .RSTB(rst_n), .Q(
         cycles_done[15]) );
-  DFFARX1_RVT \cycles_done_reg[14]  ( .D(n242), .CLK(clk), .RSTB(n571), .Q(
+  DFFARX1_RVT \cycles_done_reg[14]  ( .D(n242), .CLK(clk), .RSTB(rst_n), .Q(
         cycles_done[14]) );
-  DFFARX1_RVT \cycles_done_reg[13]  ( .D(n243), .CLK(clk), .RSTB(n571), .Q(
+  DFFARX1_RVT \cycles_done_reg[13]  ( .D(n243), .CLK(clk), .RSTB(rst_n), .Q(
         cycles_done[13]) );
-  DFFARX1_RVT \cycles_done_reg[12]  ( .D(n244), .CLK(clk), .RSTB(n571), .Q(
+  DFFARX1_RVT \cycles_done_reg[12]  ( .D(n244), .CLK(clk), .RSTB(rst_n), .Q(
         cycles_done[12]) );
-  DFFARX1_RVT \cycles_done_reg[11]  ( .D(n245), .CLK(clk), .RSTB(n571), .Q(
+  DFFARX1_RVT \cycles_done_reg[11]  ( .D(n245), .CLK(clk), .RSTB(rst_n), .Q(
         cycles_done[11]) );
   DFFARX1_RVT \cycles_done_reg[10]  ( .D(n246), .CLK(clk), .RSTB(n572), .Q(
         cycles_done[10]) );
@@ -421,7 +421,6 @@ module water_sched ( clk, rst_n, zone_req, zone_prio, zone_demand,
   AND2X1_RVT U349 ( .A1(n328), .A2(n552), .Y(n551) );
   INVX0_RVT U350 ( .A(n549), .Y(n418) );
   MUX21X1_RVT U351 ( .A1(win_r[0]), .A2(n551), .S0(n418), .Y(n211) );
-  NBUFFX2_RVT U352 ( .A(rst_n), .Y(n571) );
   NBUFFX2_RVT U353 ( .A(rst_n), .Y(n572) );
   NBUFFX2_RVT U354 ( .A(rst_n), .Y(n573) );
   NOR2X0_RVT U356 ( .A1(timer[8]), .A2(timer[9]), .Y(n385) );
