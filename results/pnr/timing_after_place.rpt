@@ -1,0 +1,76 @@
+Information: The stitching and editing of coupling caps is turned OFF for design 'water_sched_lib:water_sched.design'. (TIM-125)
+Information: Design Average RC for design water_sched  (NEX-011)
+Information: r = 1.788293 ohm/um, via_r = 0.463434 ohm/cut, c = 0.068972 ff/um, cc = 0.000000 ff/um (X dir) (NEX-017)
+Information: r = 1.672017 ohm/um, via_r = 0.578659 ohm/cut, c = 0.078727 ff/um, cc = 0.000000 ff/um (Y dir) (NEX-017)
+Information: The RC mode used is VR for design 'water_sched'. (NEX-022)
+Information: Update timing completed net estimation for all the timing graph nets (TIM-111)
+Information: Net estimation statistics: timing graph nets = 623, routed nets = 0, across physical hierarchy nets = 0, parasitics cached nets = 623, delay annotated nets = 0, parasitics annotated nets = 0, multi-voltage nets = 0. (TIM-112)
+****************************************
+Report : timing
+        -path_type full
+        -delay_type max
+        -max_paths 1
+        -report_by design
+Design : water_sched
+Version: X-2025.06-SP1
+Date   : Sat Sep 26 04:29:32 2026
+****************************************
+
+  Startpoint: supply_avail[1] (input port clocked by core_clk)
+  Endpoint: win_r_reg[0] (rising edge-triggered flip-flop clocked by core_clk)
+  Mode: default
+  Corner: default
+  Scenario: default
+  Path Group: **in2reg_default**
+  Path Type: max
+
+  Point                                            Incr      Path  
+  ------------------------------------------------------------------------
+  clock core_clk (rise edge)                       0.00      0.00
+  clock network delay (ideal)                      0.00      0.00
+  input external delay                             2.00      2.00 f
+  supply_avail[1] (in)                             0.00      2.00 f
+  HFSINV_201_4/Y (INVX0_RVT)                       0.02      2.02 r
+  HFSBUF_185_3/Y (NBUFFX2_RVT)                     0.14      2.17 r
+  U278/Y (OA21X1_RVT)                              0.16      2.33 r
+  U279/Y (AO22X1_RVT)                              0.14      2.47 r
+  U280/Y (AO222X1_RVT)                             0.23      2.70 r
+  U281/Y (AO222X1_RVT)                             0.32      3.02 r
+  U283/Y (AO222X1_RVT)                             0.32      3.33 r
+  U284/Y (AO222X1_RVT)                             0.25      3.58 r
+  U285/Y (AO222X1_RVT)                             0.28      3.86 r
+  U286/Y (OR2X1_RVT)                               0.12      3.98 r
+  U288/Y (AOI221X1_RVT)                            0.27      4.25 f
+  U289/Y (NAND2X0_RVT)                             0.12      4.36 r
+  U326/Y (INVX0_RVT)                               0.08      4.44 f
+  U331/Y (AO21X1_RVT)                              0.17      4.62 f
+  U334/Y (INVX0_RVT)                               0.13      4.75 r
+  U336/Y (AOI22X1_RVT)                             0.22      4.96 f
+  U337/Y (NAND2X0_RVT)                             0.12      5.08 r
+  U338/Y (AO222X1_RVT)                             0.25      5.33 r
+  U339/Y (AO21X1_RVT)                              0.18      5.50 r
+  U342/Y (INVX0_RVT)                               0.10      5.60 f
+  U343/Y (NAND2X0_RVT)                             0.11      5.71 r
+  ctmTdsLR_2_35/Y (OA221X1_RVT)                    0.16      5.87 r
+  ctmTdsLR_3_36/Y (OAI222X1_RVT)                   0.23      6.10 f
+  U347/Y (AO21X1_RVT)                              0.18      6.28 f
+  U348/Y (AND2X1_RVT)                              0.15      6.42 f
+  U349/Y (AND2X1_RVT)                              0.14      6.56 f
+  U351/Y (MUX21X1_RVT)                             0.18      6.74 f
+  win_r_reg[0]/D (DFFARX1_RVT)                     0.00      6.74 f
+  data arrival time                                          6.74
+
+  clock core_clk (rise edge)                      10.00     10.00
+  clock network delay (ideal)                      0.00     10.00
+  win_r_reg[0]/CLK (DFFARX1_RVT)                   0.00     10.00 r
+  clock uncertainty                               -0.15      9.85
+  library setup time                              -0.10      9.75
+  data required time                                         9.75
+  ------------------------------------------------------------------------
+  data required time                                         9.75
+  data arrival time                                         -6.74
+  ------------------------------------------------------------------------
+  slack (MET)                                                3.00
+
+
+1

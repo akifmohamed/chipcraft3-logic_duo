@@ -1,0 +1,106 @@
+****************************************
+Report : qor
+Design : water_sched
+Version: X-2025.06-SP1
+Date   : Sat Sep 26 04:29:53 2026
+****************************************
+
+
+Scenario           'default'
+Timing Path Group  '**in2reg_default**'
+----------------------------------------
+Levels of Logic:                     27
+Critical Path Length:              6.67
+Critical Path Slack:               3.07
+Critical Path Clk Period:         10.00
+Total Negative Slack:              0.00
+No. of Violating Paths:               0
+Worst Hold Violation:              0.00
+Total Hold Violation:              0.00
+No. of Hold Violations:               0
+----------------------------------------
+
+Scenario           'default'
+Timing Path Group  '**reg2out_default**'
+----------------------------------------
+Levels of Logic:                      4
+Critical Path Length:              1.10
+Critical Path Slack:               6.73
+Critical Path Clk Period:         10.00
+Total Negative Slack:              0.00
+No. of Violating Paths:               0
+Worst Hold Violation:              0.00
+Total Hold Violation:              0.00
+No. of Hold Violations:               0
+----------------------------------------
+
+Scenario           'default'
+Timing Path Group  'core_clk'
+----------------------------------------
+Levels of Logic:                     35
+Critical Path Length:              4.68
+Critical Path Slack:               5.04
+Critical Path Clk Period:         10.00
+Total Negative Slack:              0.00
+No. of Violating Paths:               0
+Worst Hold Violation:              0.00
+Total Hold Violation:              0.00
+No. of Hold Violations:               0
+----------------------------------------
+
+
+Cell Count
+----------------------------------------
+Hierarchical Cell Count:              0
+Hierarchical Port Count:              0
+Leaf Cell Count:                    557
+Buf/Inv Cell Count:                 122
+Buf Cell Count:                      15
+Inv Cell Count:                     107
+Combinational Cell Count:           435
+   Single-bit Isolation Cell Count:                        0
+   Multi-bit Isolation Cell Count:                         0
+   Isolation Cell Banking Ratio:                           0.00%
+   Single-bit Level Shifter Cell Count:                    0
+   Multi-bit Level Shifter Cell Count:                     0
+   Level Shifter Cell Banking Ratio:                       0.00%
+   Single-bit ELS Cell Count:                              0
+   Multi-bit ELS Cell Count:                               0
+   ELS Cell Banking Ratio:                                 0.00%
+Sequential Cell Count:              122
+   Integrated Clock-Gating Cell Count:                     0
+   Sequential Macro Cell Count:                            0
+   Single-bit Sequential Cell Count:                       122
+   Multi-bit Sequential Cell Count:                        0
+   Sequential Cell Banking Ratio:                          0.00%
+   BitsPerflop:                                            1.00
+Macro Count:                          0
+----------------------------------------
+
+
+Area
+----------------------------------------
+Combinational Area:              926.10
+Noncombinational Area:           868.16
+Buf/Inv Area:                    179.68
+Total Buffer Area:                42.19
+Total Inverter Area:             137.49
+Macro/Black Box Area:              0.00
+Net Area:                             0
+Net XLength:                    3968.38
+Net YLength:                    4043.07
+----------------------------------------
+Cell Area (netlist):                           1794.26
+Cell Area (netlist and physical only):         1794.26
+Net Length:                     8011.45
+
+
+Design Rules
+----------------------------------------
+Total Number of Nets:               626
+Nets with Violations:                 0
+Max Trans Violations:                 0
+Max Cap Violations:                   0
+----------------------------------------
+
+1

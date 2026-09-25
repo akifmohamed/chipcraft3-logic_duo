@@ -1,0 +1,17 @@
+Warning: The option '-physical' has been deprecated and is scheduled to be removed in a future release. Please use report_design -help to see the latest supported options of command report_design. (NDMUI-332)
+****************************************
+Report : design
+        -physical
+Design : water_sched
+Version: X-2025.06-SP1
+Date   : Sat Sep 26 04:29:53 2026
+****************************************
+
+Physical Information:
+  Total moveable cell area: 1794.257
+  Total fixed cell area: 0.000
+  Total physical cell area: 1794.257
+  Core area: {5 5} {64.28 63.52}
+                                  Count                           Area
+  TOTAL LEAF CELLS                  557                       1794.257
+1

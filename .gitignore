@@ -28,3 +28,7 @@ alib-52/
 # Python
 __pycache__/
 *.pyc
+
+# ICC2 P&R local run junk
+water_sched_lib/
+scripts/*.bak

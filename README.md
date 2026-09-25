@@ -102,3 +102,11 @@ python3 scripts/analyze_vcd.py results/sim/vcs_lab_wave.vcd   # exit 0 = PASS
 - Nandikha M
 
 _Made for ChipCraft 3.0 · IEEE EDS / SSCS / IETE · KARE University_
+
+## Round 3 - Physical Design (ICC2) DONE
+Place & route in **IC Compiler II X-2025.06-SP1** on SAED32 (1p9m, RVT):
+floorplan -> pins -> place_opt -> CTS (clock_opt) -> route_auto/route_opt -> legality PASSED -> **GDSII**.
+- Post-route **WNS +3.07 ns MET @ 100 MHz** (TNS 0, 0 violations, 0 hold), clock skew 0.03 ns
+- 557 cells, 1794.26 um2 cell area, 626 nets routed
+- Deliverables in `results/pnr/`: `water_sched.gds`, post-route netlist, timing/QoR/power reports
+- Script: `scripts/icc2_pnr.tcl` - write-up: `docs/ROUND3_EXPLAIN.md`

@@ -25,11 +25,21 @@ _Engineering diary. Judges love this story — fill it during the 24 h!_
 ## Optimization story (fill during Rounds 2–3!)
 | Round | Action | WNS | Area | Power |
 |---|---|---|---|---|
-| v1 | first mapped DC compile — saed32rvt_ss0p95v125c (sign-off corner), 10 ns, set_max_area 0, leakage+dynamic opt ON — run on sd13, W-2024.09-SP5-3, 25 Sep 21:12 IST | **+5.71 ns (MET)** | 1760.71 um^2 | 160.5 uW (74.3 dyn + 86.1 leak) |
-| v2 | set_max_area 2500 (realistic budget) + optimize_netlist -area convergence pass -> violations.rpt: "no violated constraints" | +5.71 ns (MET) | 1758.68 um^2 | 160.8 uW (74.8 dyn + 86.0 leak) |
+| v1 | first mapped DC compile - saed32rvt_ss0p95v125c, 10 ns, leakage+dynamic opt ON | +5.71 ns | 1760.71 um2 | 160.5 uW |
+| v2 | DC v2 final - zero violated constraints, sign-off corner | +5.71 ns | 1758.68 um2 | 160.8 uW |
+| v3 | ICC2 P| v2 | set_max_area 2500 (realistic budget) + optimize_netlist -area convergence pass -> violations.rpt: "no violated constraints" | +5.71 ns (MET) | 1758.68 um^2 | 160.8 uW (74.8 dyn + 86.0 leak) |R - real wire RC + CTS + propagated clock | +3.07 ns | 1794.26 um2 | results/pnr/power_final.rpt |
 
 ## Issues found in pre-sim (good war stories for the review!)
 1. TB bug: request line held high → zone re-served in a loop (fixed: drop req on ack)
 2. TB bug: counters read 1 clock before DONE state finished (fixed: extra settle clock)
 3. Design bug: `insufficient` flag cleared when another zone got served (fixed: live status = "any zone stuck without water")
 4. DC bug #1 (lab, 25 Sep): the SAED32 DB folder name contains a SPACE → `set search_path "$search_path <path>"` split into two bogus entries → target `.db` never found → compile ran blind (UID-3/UIO-3/OPT-1312; the `"$search_path $DBDIR"` sed variant has the same bug). Fixed: `lappend` + guards. **Bug #2 (07:50): with the path fixed, UID-3 persists → the `.db` file itself is unreadable** (corrupt/stub/perm/dir) → added library health probe + `.lib`/`.gz` fallbacks. Red herring killed: `link`'s `water_sched.db` line is a phantom of the in-memory design, not a stale file. Lesson: `command.log` has no stdout — always `|& tee` a real log.
+
+## Round 3 - ICC2 Place & Route (26 Sep, sd13)
+| Step | Result |
+|---|---|
+| Floorplan (50% util) + place_pins (164 pins) | core ~59x58 um |
+| Parasitics debug: NEX-018 -> "cant find parasitic spec" for 3 file sets -> root cause: -early_spec wants a registered model NAME -> read_parasitic_tech + named models | fixed in-session |
+| Dropped ICC1-legacy create_clock_tree_spec; fixed write_gds / write_verilog syntax | clean end-to-end run |
+| place_opt -> clock_opt (CTS) -> route_auto/route_opt -> check_legality | PASSED, 0 violations |
+| Final | **WNS +3.07 ns MET** post-route, TNS 0, hold 0, skew 0.03 ns, 557 cells, 1794.26 um2, GDS written |
