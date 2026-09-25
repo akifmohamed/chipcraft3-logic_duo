@@ -32,3 +32,9 @@ __pycache__/
 # ICC2 P&R local run junk
 water_sched_lib/
 scripts/*.bak
+
+# ICC2 session junk
+default-*.svf
+icc2_command.log
+icc2_output.txt
+.graph_data.txt

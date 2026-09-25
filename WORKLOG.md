@@ -26,8 +26,8 @@ _Engineering diary. Judges love this story — fill it during the 24 h!_
 | Round | Action | WNS | Area | Power |
 |---|---|---|---|---|
 | v1 | first mapped DC compile - saed32rvt_ss0p95v125c, 10 ns, leakage+dynamic opt ON | +5.71 ns | 1760.71 um2 | 160.5 uW |
-| v2 | DC v2 final - zero violated constraints, sign-off corner | +5.71 ns | 1758.68 um2 | 160.8 uW |
-| v3 | ICC2 P| v2 | set_max_area 2500 (realistic budget) + optimize_netlist -area convergence pass -> violations.rpt: "no violated constraints" | +5.71 ns (MET) | 1758.68 um^2 | 160.8 uW (74.8 dyn + 86.0 leak) |R - real wire RC + CTS + propagated clock | +3.07 ns | 1794.26 um2 | results/pnr/power_final.rpt |
+| v2 | set_max_area 2500 budget + optimize_netlist -area pass -> zero violated constraints | +5.71 ns (MET) | 1758.68 um2 | 160.8 uW (74.8 dyn + 86.0 leak) |
+| v3 | ICC2 P and R - real wire RC + CTS + propagated clock | +3.07 ns | 1794.26 um2 | results/pnr/power_final.rpt |
 
 ## Issues found in pre-sim (good war stories for the review!)
 1. TB bug: request line held high → zone re-served in a loop (fixed: drop req on ack)
