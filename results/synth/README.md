@@ -28,13 +28,26 @@ variant `"$search_path $DBDIR"`) let Tcl split the path into two bogus list
 entries.  Fixes now in `scripts/dc_synth.tcl`:
 
 * `lappend search_path $LAB_DB_DIR` (keeps the spaced path as ONE element),
-* corner **auto-pick** via `glob` (tt/typ 25C preferred, else any saed32rvt*.db),
-* pre-flight guards: RTL present, `.db` present, **no stale `water_sched.db`
-  in CWD** (the 07:02 log shows `link` loading it as the design source!),
+* corner **auto-pick** via `glob` (tt/typ 25C preferred, else any saed32rvt*),
+* **library health probe**: every candidate is checked (directory? empty?
+  unreadable perms? git-lfs/html stub? gzip? liberty text?) and the first
+  healthy one wins, with `.lib` / `.db.gz` / `.lib.gz` fallbacks,
 * post-`link` guard: SAED lib really linked (`get_libs *saed32*`),
 * `compile_ultra` return-code guard: a failed compile no longer writes an
   unmapped GTECH netlist (the 07:02 run's `water_sched_netlist.v` had
   `VO-12: unmapped components` — **do not submit it**).
+
+## Update 07:50 — the path was only bug #1
+
+The 07:50 re-run shows the braced search_path entry and both pre-flight
+banners, i.e. **the space fix works and the file exists — yet UID-3 remains**.
+So the `.db` file itself is unreadable by DC (corrupted/stub/empty/dir/perms).
+The script now probes library health and prints `>>> CHOSEN CORNER: … (probe:
+…, … bytes)` (+ first 48 bytes when not gzip) so the next log self-diagnoses.
+
+Also corrected: the `link … water_sched /…/water_sched.db` line is a **phantom**
+(DC printing the in-memory elaborated design) — `mv water_sched.db` proved no
+such file exists on disk.  Not a bug; ignore that line.
 
 ## Next lab run — checklist
 

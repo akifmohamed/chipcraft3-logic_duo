@@ -21,39 +21,68 @@ set OUT        "results/synth"
 set LAB_DB_DIR "/home/govardhini5049/Downloads/pd_scripts-20250304T122158Z-001 modified/pd_scripts-20250304T122158Z-001/pd_scripts/ref/DBs"
 lappend search_path $LAB_DB_DIR
 
-# corner auto-pick (same preference order as our shell chooser): typical/25C
-# first, then whatever saed32rvt*.db the folder actually contains.
+# --- corner auto-pick + library HEALTH PROBE -------------------------------
+# The 07:50 lab run proved search_path is now correct (braced list entry) and
+# the file exists, yet DC still said UID-3 -> the .db FILE ITSELF is unreadable
+# (corrupted download / git-lfs stub / html / empty / directory / perms).
+# So we no longer trust names: every candidate is probed (dir? empty? perm?
+# stub? gzip? liberty?) and the first HEALTHY one wins.  .lib and .gz fallbacks
+# are included -- DC reads plain liberty and gzip natively (alib cache).
+proc probe_lib {path} {
+    if {[file isdirectory $path]}   { return bad-dir }
+    if {[file size $path] == 0}     { return bad-empty }
+    if {[catch {set fh [open $path r]} err]} { return bad-perm }
+    fconfigure $fh -translation binary
+    set head [read $fh 96]; close $fh
+    if {[string length $head] < 4} { return bad-empty }
+    scan [string index $head 0] %c c0
+    scan [string index $head 1] %c c1
+    if {$c0 == 31 && $c1 == 139}    { return ok-gzip }
+    if {[regexp {^library\s*\(} $head]} { return ok-liberty }
+    set low [string tolower $head]
+    if {[string match *git-lfs* $low] || [string match {*<html*} $low]
+        || [string match {*<!doctype*} $low]} { return bad-stub }
+    return unknown
+}
+
 set target_library ""
-foreach pat {*saed32rvt*tt*25c*.db *saed32rvt*typ*25c*.db *saed32rvt*25c*.db *saed32rvt*.db} {
-    set cands [lsort [glob -nocomplain -directory $LAB_DB_DIR -- $pat]]
-    if {[llength $cands]} { set target_library [file tail [lindex $cands 0]]; break }
+set probe_kind   ""
+foreach pat {*saed32rvt*tt*25c* *saed32rvt*typ*25c* *saed32rvt*25c* *saed32rvt*} {
+    foreach ext {.db .lib .db.gz .lib.gz} {
+        foreach c [lsort [glob -nocomplain -directory $LAB_DB_DIR -- ${pat}${ext}]] {
+            set k [probe_lib $c]
+            if {[string match ok-* $k] || $k eq "unknown"} {
+                set target_library [file tail $c]
+                set probe_kind $k
+                break
+            }
+        }
+        if {$target_library ne ""} break
+    }
+    if {$target_library ne ""} break
 }
 if {$target_library eq ""} {
-    echo "ERROR: no saed32rvt*.db found in $LAB_DB_DIR -- ls that folder!"
+    echo "ERROR: no readable SAED32 library in $LAB_DB_DIR -- probe results:"
+    foreach c [lsort [glob -nocomplain -directory $LAB_DB_DIR -- *]] {
+        echo "    [probe_lib $c]   $c"
+    }
+    echo "    -> ask the lab incharge for the real SAED32 .db/.lib, or re-unpack"
+    echo "       the PDK zip (git-lfs/html stubs mean a broken download)."
     exit 1
 }
-echo ">>> CHOSEN CORNER: $target_library"
-set link_library   "* $target_library"
+set link_library "* $target_library"
+set dbpath [file join $LAB_DB_DIR $target_library]
+echo ">>> CHOSEN CORNER: $target_library  (probe: $probe_kind, [file size $dbpath] bytes)"
+if {$probe_kind ne "ok-gzip"} {
+    set fh [open $dbpath r]; fconfigure $fh -translation binary
+    set head [read $fh 48]; close $fh
+    echo ">>> lib head: [string map [list \n \\n \t \\t] $head]"
+}
 
 # ---- fail LOUDLY and early instead of silently compiling garbage ----------
 if {![file exists $RTL_FILES]} {
     echo "ERROR: '$RTL_FILES' not found -- run dc_shell from the REPO ROOT:"
     echo "       dc_shell -f scripts/dc_synth.tcl |& tee results/synth/dc.log"
-    exit 1
-}
-if {![file exists [file join $LAB_DB_DIR $target_library]]} {
-    echo "ERROR: target library NOT FOUND at:"
-    echo "       [file join $LAB_DB_DIR $target_library]"
-    echo "       -> ls that DBs folder on this machine and fix LAB_DB_DIR /"
-    echo "          target_library above (the exact .db filename matters)."
-    exit 1
-}
-echo ">>> target library OK: [file join $LAB_DB_DIR $target_library]"
-# a stale <top>.db in the CWD is picked up by `link` as the DESIGN source and
-# silently shadows the freshly elaborated RTL (seen in the 07:02 lab log!).
-if {[file exists "${TOP}.db"]} {
-    echo "ERROR: stale ${TOP}.db in the current directory would shadow the RTL."
-    echo "       mv ${TOP}.db /tmp/   then re-run."
     exit 1
 }
 
