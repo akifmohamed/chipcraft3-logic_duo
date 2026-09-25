@@ -1,0 +1,16 @@
+==============================================================
+ VCD INDEPENDENT VERIFICATION — water_sched
+ dump: results/sim/vcs_lab_wave.vcd
+ end time: 5546 ns   clock edges: 555 posedge   signals: 109
+==============================================================
+  [PASS] C1: tb errors counter = 0 (self-check verdict)
+  [PASS] C2: tb onehot_bad counter = 0 (valve-conflict monitor)
+  [PASS] C3: dut.valve_open one-hot-or-zero at all 83 transitions
+  [PASS] C4: dut_strict.valve_open one-hot-or-zero at all 5 transitions
+  [PASS] C5: cycles_done = 9, sum(zone_cycles[0..3]) = 9  per-zone: [2, 2, 3, 2]
+  [PASS] C6: dut_strict cycles_done = 2 (T13 expects 2)
+  [PASS] C7: no x/z recorded on key DUT outputs
+  [INFO] C8: 41 total serve events on the main DUT — zone3: 11  zone2: 11  zone1: 10  zone0: 9   | strict DUT: 2
+==============================================================
+ RESULT: ALL INDEPENDENT CHECKS PASSED — dump is consistent with
+         a clean, conflict-free regression run.
