@@ -98,7 +98,7 @@ python3 scripts/analyze_vcd.py results/sim/vcs_lab_wave.vcd   # exit 0 = PASS
 | Status codes | 0 IDLE · 1 SERVE · 2 WAIT · 3 DONE |
 
 ## 👥 Team
-- **Akif Mohamed** (Team Lead) — RTL & verification
-- Team-mate — synthesis & physical design
+- Akif Mohamed J
+- Nandikha M
 
 _Made for ChipCraft 3.0 · IEEE EDS / SSCS / IETE · KARE University_
