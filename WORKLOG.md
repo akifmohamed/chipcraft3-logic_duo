@@ -18,13 +18,14 @@ _Engineering diary. Judges love this story — fill it during the 24 h!_
 | H2 | **Jury challenge on skip-to-fit** → answer: never-dropped queue + physics + work-conserving + made policy CONFIGURABLE (`STRICT_PRIO` parameter) + T13 proof | 13/13 groups PASS |
 | H-lab (25 Sep) | Official VCS regression on dsplab122 (VCS W-2024.09-SP2-4) | **PASS** — dump proves errors=0, onehot_bad=0 |
 | H-lab | Independent VCD audit tool `scripts/analyze_vcd.py` + wave PNGs from the LAB dump | 8/8 checks PASS · `results/sim/wave_*.png` |
-| H-lab | DC attempt #1 failed → root cause: **space in lab DB folder name** split `search_path` (Tcl list) → target lib never found | fixed: `lappend` + pre-flight guards in `dc_synth.tcl` |
+| H-lab | DC attempt #1 failed → root cause: **space in lab DB folder name** split `search_path` (Tcl list) → target lib never found | fix #1 `lappend`; fix #2 probe+score corners (a 160 KB `dlvl` aux lib was being picked!); fix #3 DC's internal resolver hates spaced dirs → copy `.db` to `~/chipcraft_libs` |
+| H-lab | **DC attempt #4: `compile_ultra OK`** — first mapped netlist @ saed32rvt_ss0p95v125c (PDK has no tt corner; ss@0.95 V/125 C = honest sign-off) | reports + netlist inbound → WORKLOG v1 row |
 | H-lab | Repo rebuilt to the promised structure; VCS build junk gitignored | rtl/ tb/ constraints/ scripts/ docs/ results/ |
 
 ## Optimization story (fill during Rounds 2–3!)
 | Round | Action | WNS | Area | Power |
 |---|---|---|---|---|
-| v1 | first DC compile | | | |
+| v1 | first mapped DC compile — saed32rvt_ss0p95v125c (sign-off corner), 10 ns, `set_max_area 0`, leakage+dynamic opt ON | _reports inbound_ | _…_ | _…_ |
 | v2 | | | | |
 
 ## Issues found in pre-sim (good war stories for the review!)

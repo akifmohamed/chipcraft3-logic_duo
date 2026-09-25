@@ -37,17 +37,26 @@ entries.  Fixes now in `scripts/dc_synth.tcl`:
   unmapped GTECH netlist (the 07:02 run's `water_sched_netlist.v` had
   `VO-12: unmapped components` — **do not submit it**).
 
-## Update 07:50 — the path was only bug #1
+## Update 07:57 → **SUCCESS on attempt #4** 🎉
 
-The 07:50 re-run shows the braced search_path entry and both pre-flight
-banners, i.e. **the space fix works and the file exists — yet UID-3 remains**.
-So the `.db` file itself is unreadable by DC (corrupted/stub/empty/dir/perms).
-The script now probes library health and prints `>>> CHOSEN CORNER: … (probe:
-…, … bytes)` (+ first 48 bytes when not gzip) so the next log self-diagnoses.
+`>>> CHOSEN CORNER: saed32rvt_ss0p95v125c.db (probe: unknown, 4104192 bytes)`
+`>>> copied to space-free path: ~/chipcraft_libs/saed32rvt_ss0p95v125c.db`
+`>>> SAED32 library linked OK (1 lib(s))`
+`>>> compile_ultra OK`
 
-Also corrected: the `link … water_sched /…/water_sched.db` line is a **phantom**
-(DC printing the in-memory elaborated design) — `mv water_sched.db` proved no
-such file exists on disk.  Not a bug; ignore that line.
+Bug #3 (the last one): DC's *internal* library resolver cannot handle a space
+in the directory name at all — not even with a brace-quoted `search_path`
+entry.  Copying the `.db` to `~/chipcraft_libs` (space-free) and repointing
+`search_path` at the copy fixed UID-3 for good.
+
+Corner choice is deliberate: the lab PDK bundle ships **no tt corner** (only
+`ff*` / `ss*` at 0.75/0.95/1.16 V × 125/−40 C, plus `dlvl/ulvl/pg` aux libs).
+`ss0p95v125c` = worst case at nominal voltage = the honest sign-off corner;
+meeting 10 ns there is a stronger claim than meeting it at ff.
+
+Pending: copy the generated reports + netlist into this folder (see checklist
+below), then `python3 scripts/parse_dc_reports.py results/synth` fills the
+WORKLOG optimization-story v1 row.
 
 ## Next lab run — checklist
 
