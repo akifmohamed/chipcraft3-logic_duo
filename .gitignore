@@ -1,0 +1,30 @@
+# ----------------------------------------------------------------------
+# Build / simulation junk — regenerable on any machine, never commit.
+# ----------------------------------------------------------------------
+# VCS
+simv
+simv.daidir/
+*.daidir/
+csrc/
+ucli.key
+default.svf
+*.pvl
+*.syn
+*.mr
+DVEfiles/
+vc_hdrs.h
+novas.*
+verdiLog/
+*.vpd
+# Icarus
+sim.out
+# transient dumps at repo root (curated copies live in results/sim/)
+water_sched.vcd
+# DC / ICC2 local run dirs
+work/
+*.ddc
+command.log
+alib-52/
+# Python
+__pycache__/
+*.pyc

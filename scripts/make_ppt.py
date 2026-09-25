@@ -248,5 +248,9 @@ notes(s, "What we EXPECT to deliver. All six PS objectives covered. A self-check
          "Verilog, timing-closed synthesis in DC and clean place-and-route with GDS in ICC2. "
          "Expected bottom line: fair, safe, auditable.")
 
-prs.save("/home/user/chipcraft/docs/Round0_LOGIC_DUO.pptx")
-print("SAVED: docs/Round0_LOGIC_DUO.pptx  (5 slides)")
+import os as _os
+_ROOT = _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))
+_OUT = _os.path.join(_ROOT, "docs", "Round0_LOGIC_DUO.pptx")
+_os.makedirs(_os.path.join(_ROOT, "docs"), exist_ok=True)
+prs.save(_OUT)
+print("SAVED:", _OUT, " (5 slides)")

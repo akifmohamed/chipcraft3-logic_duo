@@ -53,6 +53,8 @@ stalling the whole city, while a live `insufficient` flag reports the shortage.
 │   ├── run_sim.sh         ← simulation (iverilog pre-check / VCS official)
 │   ├── dc_synth.tcl       ← Synopsys Design Compiler
 │   ├── icc2_pnr.tcl       ← Synopsys ICC2 (floorplan→route→GDS)
+│   ├── plot_wave.py       ← VCD → report-ready waveform PNGs
+│   ├── analyze_vcd.py     ← independent VCD audit (no simulator needed)
 │   └── make_ppt.py        ← Round-0 deck generator
 ├── docs/                  ← PS, battle guide, cheat sheet, presentation
 └── results/               ← ALL outputs & reports (see results/README.md)
@@ -68,18 +70,22 @@ stalling the whole city, while a live `insufficient` flag reports the shortage.
 
 # official flow (KARE lab workstations)
 vcs -full64 -sverilog -debug_access+all rtl/water_sched.v tb/water_sched_tb.v -o simv && ./simv
-dc_shell   -f scripts/dc_synth.tcl | tee results/synth/dc.log
+dc_shell   -f scripts/dc_synth.tcl |& tee results/synth/dc.log
 icc2_shell -f scripts/icc2_pnr.tcl | tee results/pnr/icc2.log
+
+# evidence tools (any machine)
+python3 scripts/plot_wave.py   results/sim/vcs_lab_wave.vcd results/sim
+python3 scripts/analyze_vcd.py results/sim/vcs_lab_wave.vcd   # exit 0 = PASS
 ```
 
 ## ✅ Results
 | Stage | Result | Where |
 |---|---|---|
-| RTL + TB (pre-sim) | **ALL TESTS PASSED** (12/12 groups, 0 one-hot conflicts, lint clean) | `results/sim/` |
-| Corner-case suite | reset mid-serve · priority tie · pump off · mid-flush pump loss · all-emergency | `docs/VERIFICATION.md` |
-| Waveforms | overview + emergency + insufficient zooms | `results/sim/*.png` |
-| VCS simulation | _at lab_ | `results/sim/` |
-| DC synthesis (PPA) | _at lab_ | `results/synth/` |
+| RTL + TB (pre-sim) | **ALL TESTS PASSED** (13/13 groups, 0 one-hot conflicts) | `results/sim/`, `docs/VERIFICATION.md` |
+| Corner-case suite | reset mid-serve · priority tie · pump off · mid-flush pump loss · all-emergency · STRICT_PRIO mode | `docs/VERIFICATION.md` |
+| **VCS simulation (lab, 25 Sep)** | **PASS** — `errors=0`, `onehot_bad=0`, 41 serves, independent 8/8 VCD audit | `results/sim/VCS_LAB_RUN.md` |
+| Waveforms (from lab VCS dump) | overview + emergency + insufficient zooms | `results/sim/wave_*.png` |
+| DC synthesis (PPA) | **compile_ultra OK** (25 Sep, attempt #4) @ saed32rvt_ss0p95v125c, 10 ns — reports/netlist inbound | `results/synth/` |
 | ICC2 layout | _at lab_ | `results/pnr/` |
 
 ## 🎯 Key values
