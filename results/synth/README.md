@@ -11,7 +11,7 @@
   `cells_used.rpt`, `check_design.rpt`, netlist, `.ddc`) are written to
   `results/synth/` **on the lab machine** and still need to be copied here.
 
-## Root cause of the failed attempt (fixed in `scripts/dc_synth.tcl`)
+## Root cause of the failed attempt — **confirmed by the 07:02 lab log**
 
 The lab library folder name contains a **space**:
 
@@ -19,18 +19,22 @@ The lab library folder name contains a **space**:
 /home/govardhini5049/Downloads/pd_scripts-20250304T122158Z-001 modified/pd_scripts-20250304T122158Z-001/pd_scripts/ref/DBs
 ```
 
-The old script did `set search_path "$search_path <that path>"`, so Tcl split
-it into two bogus list entries (`.../pd_scripts-20250304T122158Z-001` and
-`modified/...`).  The `.db` was therefore never found → `link`/`compile_ultra`
-had no target library.  Fix now in the script:
+`ls` sees `saed32rvt_dlvl_ff0p95v125c_i1p16v.db` in it, but DC printed
+`Warning: Can't read link_library file ... (UID-3)`,
+`Error: Could not read the following target libraries (UIO-3)` and
+`Error: No target library found (OPT-1312)` — because
+`set search_path "$search_path <path-with-space>"` (and the lab-side sed
+variant `"$search_path $DBDIR"`) let Tcl split the path into two bogus list
+entries.  Fixes now in `scripts/dc_synth.tcl`:
 
-* `lappend search_path $LAB_DB_DIR` (keeps the spaced path as ONE list element),
-* hard pre-flight guards: RTL file present + target `.db` present, else clear
-  `ERROR:` message and stop,
-* `echo ">>> target library OK: ..."` banner when the library resolves.
-
-(If the lab lets you, renaming the folder to `pd_scripts_modified` and
-updating `LAB_DB_DIR` removes the hazard entirely.)
+* `lappend search_path $LAB_DB_DIR` (keeps the spaced path as ONE element),
+* corner **auto-pick** via `glob` (tt/typ 25C preferred, else any saed32rvt*.db),
+* pre-flight guards: RTL present, `.db` present, **no stale `water_sched.db`
+  in CWD** (the 07:02 log shows `link` loading it as the design source!),
+* post-`link` guard: SAED lib really linked (`get_libs *saed32*`),
+* `compile_ultra` return-code guard: a failed compile no longer writes an
+  unmapped GTECH netlist (the 07:02 run's `water_sched_netlist.v` had
+  `VO-12: unmapped components` — **do not submit it**).
 
 ## Next lab run — checklist
 

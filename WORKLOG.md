@@ -31,4 +31,4 @@ _Engineering diary. Judges love this story — fill it during the 24 h!_
 1. TB bug: request line held high → zone re-served in a loop (fixed: drop req on ack)
 2. TB bug: counters read 1 clock before DONE state finished (fixed: extra settle clock)
 3. Design bug: `insufficient` flag cleared when another zone got served (fixed: live status = "any zone stuck without water")
-4. DC bug (lab, 25 Sep): the SAED32 DB folder name contains a SPACE → `set search_path "$search_path <path>"` split into two bogus entries → target `.db` never found → compile ran blind (fixed: `lappend search_path` + fail-loud pre-flight checks; lesson: `command.log` has no stdout, always `|& tee` a real log)
+4. DC bug (lab, 25 Sep): the SAED32 DB folder name contains a SPACE → `set search_path "$search_path <path>"` split into two bogus entries → target `.db` never found → compile ran blind (confirmed: UID-3/UIO-3/OPT-1312 in lab log; the `"$search_path $DBDIR"` sed variant has the same bug). Fixed: `lappend` + corner auto-pick + linked-lib & compile-return guards; also caught a stale `water_sched.db` in CWD shadowing `link`. Lesson: `command.log` has no stdout — always `|& tee` a real log.
