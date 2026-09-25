@@ -1,0 +1,22 @@
+ 
+****************************************
+check_design summary:
+Version:     W-2024.09-SP5-3
+Date:        Fri Sep 25 21:12:12 2026
+****************************************
+
+                   Name                                            Total
+--------------------------------------------------------------------------------
+Cells                                                               8
+    Cells do not drive (LINT-1)                                     8
+--------------------------------------------------------------------------------
+
+Warning: In design 'water_sched', cell 'B_21' does not drive any nets. (LINT-1)
+Warning: In design 'water_sched', cell 'B_22' does not drive any nets. (LINT-1)
+Warning: In design 'water_sched', cell 'B_23' does not drive any nets. (LINT-1)
+Warning: In design 'water_sched', cell 'C1813' does not drive any nets. (LINT-1)
+Warning: In design 'water_sched', cell 'C1816' does not drive any nets. (LINT-1)
+Warning: In design 'water_sched', cell 'C1818' does not drive any nets. (LINT-1)
+Warning: In design 'water_sched', cell 'C1820' does not drive any nets. (LINT-1)
+Warning: In design 'water_sched', cell 'C1822' does not drive any nets. (LINT-1)
+1

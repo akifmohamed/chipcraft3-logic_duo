@@ -25,7 +25,7 @@ _Engineering diary. Judges love this story — fill it during the 24 h!_
 ## Optimization story (fill during Rounds 2–3!)
 | Round | Action | WNS | Area | Power |
 |---|---|---|---|---|
-| v1 | first mapped DC compile — saed32rvt_ss0p95v125c (sign-off corner), 10 ns, `set_max_area 0`, leakage+dynamic opt ON | _reports inbound_ | _…_ | _…_ |
+| v1 | first mapped DC compile — saed32rvt_ss0p95v125c (sign-off corner), 10 ns, set_max_area 0, leakage+dynamic opt ON — run on sd13, W-2024.09-SP5-3, 25 Sep 21:12 IST | **+5.71 ns (MET)** | 1760.71 um^2 | 160.5 uW (74.3 dyn + 86.1 leak) |
 | v2 | | | | |
 
 ## Issues found in pre-sim (good war stories for the review!)

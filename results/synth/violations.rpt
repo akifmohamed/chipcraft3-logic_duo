@@ -1,0 +1,19 @@
+ 
+****************************************
+Report : constraint
+        -all_violators
+Design : water_sched
+Version: W-2024.09-SP5-3
+Date   : Fri Sep 25 21:12:17 2026
+****************************************
+
+
+   max_area
+
+                             Required        Actual
+   Design                      Area           Area           Slack
+   -----------------------------------------------------------------
+   water_sched                  0.00        2186.41       -2186.41  (VIOLATED)
+
+
+1

@@ -1,0 +1,33 @@
+Module: DW01_cmp2_width8, Ports: 20, Input: 18, Output: 2, Inout: 0
+Module: DW01_cmp2_width8, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Module: DW01_cmp2_width2, Ports: 8, Input: 6, Output: 2, Inout: 0
+Module: DW01_cmp2_width2, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Module: DW01_cmp2_width16, Ports: 36, Input: 34, Output: 2, Inout: 0
+Module: DW01_cmp2_width16, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Module: DW01_dec_width16, Ports: 32, Input: 16, Output: 16, Inout: 0
+Module: DW01_dec_width16, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Module: DW01_inc_width32, Ports: 64, Input: 32, Output: 32, Inout: 0
+Module: DW01_inc_width32, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Module: DW01_inc_width16, Ports: 32, Input: 16, Output: 16, Inout: 0
+Module: DW01_inc_width16, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Information: Updating graph... (UID-83)
+ 
+****************************************
+Report : clocks
+Design : water_sched
+Version: W-2024.09-SP5-3
+Date   : Fri Sep 25 21:12:12 2026
+****************************************
+
+Attributes:
+    d - dont_touch_network
+    f - fix_hold
+    p - propagated_clock
+    G - generated_clock
+    g - lib_generated_clock
+
+Clock          Period   Waveform            Attrs     Sources
+--------------------------------------------------------------------------------
+core_clk        10.00   {0 5}                         {clk}
+--------------------------------------------------------------------------------
+1

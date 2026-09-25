@@ -1,0 +1,560 @@
+Info: [VCS_SAVE_RESTORE_INFO] ASLR (Address Space Layout Randomization) is detected on the machine. To enable $save functionality, ASLR will be switched off and simv re-executed.
+Please use '-no_save' simv switch to avoid this.
+
+                           Design Compiler Graphical 
+                                 DC Ultra (TM)
+                                  DFTMAX (TM)
+                              Power Compiler (TM)
+                                 DesignWare (R)
+                                 DC Expert (TM)
+                               Design Vision (TM)
+                               HDL Compiler (TM)
+                               VHDL Compiler (TM)
+                                  DFT Compiler
+                               Design Compiler(R)
+
+              Version W-2024.09-SP5-3 for linux64 - Jul 31, 2025 
+
+                    Copyright (c) 1988 - 2025 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+   or distribution of this software is strictly prohibited.  Licensed Products
+     communicate with Synopsys servers for the purpose of providing software
+    updates, detecting software piracy and verifying that customers are using
+    Licensed Products in conformity with the applicable License Key for such
+  Licensed Products. Synopsys will use information gathered in connection with
+    this process to deliver software updates and pursue software pirates and
+                                   infringers.
+
+ Inclusivity & Diversity - Visit SolvNetPlus to read the "Synopsys Statement on
+            Inclusivity and Diversity" (Refer to article 000036315 at
+                        https://solvnetplus.synopsys.com)
+Initializing...
+Initializing gui preferences from file  /home/masthan5097/.synopsys_dc_gui/preferences.tcl
+Current time:       Fri Sep 25 21:12:11 2026
+Hostname:           sd13.ece.kalasalingam.ac.in
+CPU Model:          12th Gen Intel(R) Core(TM) i5-12400
+CPU Details:        Cores = 12 : Sockets = 1 : Cache Size = 18432 KB : Freq = 2.50 GHz
+OS:                 Linux 4.18.0-553.74.1.el8_10.x86_64
+RAM:                 15 GB (Free   6 GB)
+Swap:                 7 GB (Free   7 GB)
+Work Filesystem:    / mounted to /dev/sda6
+Tmp Filesystem:     / mounted to /dev/sda6
+Work Disk:          284 GB (Free  48 GB)
+Tmp Disk:           284 GB (Free  48 GB)
+
+CPU Load: 6%, Ram Free: 6 GB, Swap Free: 7 GB, Work Disk Free: 48 GB, Tmp Disk Free: 48 GB
+#=====================================================================
+# dc_synth.tcl  â€”  RTL -> gate-level netlist with Synopsys Design Compiler
+# Team LOGIC DUO | ChipCraft 3.0
+# HOW TO RUN (on the lab machine):   dc_shell -f scripts/dc_synth.tcl |& tee results/synth/dc.log
+#=====================================================================
+#---------------------------------------------------------------------
+# 0) EDIT THESE for your lab (ask the lab incharge / see the sample project)
+#---------------------------------------------------------------------
+set TOP        "water_sched"
+water_sched
+set RTL_FILES  "rtl/water_sched.v"
+rtl/water_sched.v
+set SDC_FILE   "constraints/water_sched.sdc"
+constraints/water_sched.sdc
+set OUT        "results/synth"
+results/synth
+# --- library setup: SAED 32nm from the lab sample project (dsplab122) ---
+# BUGFIX 2026-09-25 (confirmed by lab log 07:02): the lab folder name contains
+# a SPACE ("...001 modified/...").  `set search_path "$search_path <path>"`
+# (and the sed-based "$search_path $DBDIR" variant!) let Tcl split it into TWO
+# bogus list entries, so the .db -- although visible to `ls` -- was never
+# found:  UID-3 / UIO-3 / OPT-1312.  lappend keeps it as ONE list element.
+set LAB_DB_DIR "/home/masthan5097/Downloads/chipcraft_libs"
+/home/masthan5097/Downloads/chipcraft_libs
+lappend search_path $LAB_DB_DIR
+. /home/masthan5097/synopsys/dcs/syn/W-2024.09-SP5-3/libraries/syn /home/masthan5097/synopsys/dcs/syn/W-2024.09-SP5-3/dw/syn_ver /home/masthan5097/synopsys/dcs/syn/W-2024.09-SP5-3/dw/sim_ver /home/masthan5097/Downloads/chipcraft_libs
+# --- corner auto-pick + library HEALTH PROBE + space-free copy -------------
+# 07:57 findings: (a) the old picker grabbed an AUX library (dlvl = level
+# shifters, 160 KB) because "*25c*" matches "125c" -- aux families must never
+# be the primary target; (b) UID-3 survived even a brace-quoted search_path,
+# i.e. DC's internal resolver cannot handle the SPACE in the folder name at
+# all.  Strategy: probe health, SCORE corners (tt > ss0p95v125c > ss > ff,
+# aux +10 penalty), then COPY the winner into $HOME/chipcraft_libs (no space)
+# and point search_path exclusively at that copy.
+proc probe_lib {path} {
+    if {[file isdirectory $path]}   { return bad-dir }
+    if {[file size $path] == 0}     { return bad-empty }
+    if {[catch {set fh [open $path r]} err]} { return bad-perm }
+    fconfigure $fh -translation binary
+    set head [read $fh 96]; close $fh
+    if {[string length $head] < 4} { return bad-empty }
+    scan [string index $head 0] %c c0
+    scan [string index $head 1] %c c1
+    if {$c0 == 31 && $c1 == 139}    { return ok-gzip }
+    if {[regexp {^library\s*\(} $head]} { return ok-liberty }
+    set low [string tolower $head]
+    if {[string match *git-lfs* $low] || [string match {*<html*} $low]
+        || [string match {*<!doctype*} $low]} { return bad-stub }
+    return unknown
+}
+proc corner_score {name} {
+    set s 4
+    if {[string match *tt* $name]}          { set s 0 }
+    if {[string match *ss0p95v125c* $name]} { set s 1 }
+    if {[string match *ss* $name] && $s > 2} { set s 2 }
+    if {[string match *ff* $name] && $s > 3} { set s 3 }
+    if {[string match *_dlvl_* $name] || [string match *_ulvl_* $name]
+        || [string match *_pg_* $name]}     { set s [expr {$s + 10}] }
+    return $s
+}
+set cands {}
+foreach fam {saed32rvt saed32} {
+    foreach ext {.db .lib .db.gz .lib.gz} {
+        foreach c [glob -nocomplain -directory $LAB_DB_DIR -- *${fam}*${ext}] {
+            set k [probe_lib $c]
+            if {[string match ok-* $k] || $k eq "unknown"} {
+                lappend cands [list [corner_score [file tail $c]] [file tail $c] $k $c]
+            }
+        }
+    }
+    if {[llength $cands]} break
+}
+if {![llength $cands]} {
+    echo "ERROR: no readable SAED32 library in $LAB_DB_DIR -- probe results:"
+    foreach c [lsort [glob -nocomplain -directory $LAB_DB_DIR -- *]] {
+        echo "    [probe_lib $c]   $c"
+    }
+    echo "    -> ask the lab incharge for the real SAED32 .db/.lib, or re-unpack"
+    echo "       the PDK zip (git-lfs/html stubs mean a broken download)."
+    exit 1
+}
+set cands [lsort -index 0 -integer $cands]
+{1 saed32rvt_ss0p95v125c.db unknown /home/masthan5097/Downloads/chipcraft_libs/saed32rvt_ss0p95v125c.db}
+set pick          [lindex $cands 0]
+1 saed32rvt_ss0p95v125c.db unknown /home/masthan5097/Downloads/chipcraft_libs/saed32rvt_ss0p95v125c.db
+set target_library [lindex $pick 1]
+saed32rvt_ss0p95v125c.db
+set probe_kind     [lindex $pick 2]
+unknown
+set src_db         [lindex $pick 3]
+/home/masthan5097/Downloads/chipcraft_libs/saed32rvt_ss0p95v125c.db
+# space-free home for the library (DC's resolver cannot take the spaced path)
+set SAFE_DB_DIR "$env(HOME)/chipcraft_libs"
+/home/masthan5097/chipcraft_libs
+file mkdir $SAFE_DB_DIR
+file copy -force $src_db [file join $SAFE_DB_DIR $target_library]
+set newpath {}
+foreach p $search_path { if {$p ne $LAB_DB_DIR} { lappend newpath $p } }
+lappend newpath $SAFE_DB_DIR
+. /home/masthan5097/synopsys/dcs/syn/W-2024.09-SP5-3/libraries/syn /home/masthan5097/synopsys/dcs/syn/W-2024.09-SP5-3/dw/syn_ver /home/masthan5097/synopsys/dcs/syn/W-2024.09-SP5-3/dw/sim_ver /home/masthan5097/chipcraft_libs
+set search_path $newpath
+. /home/masthan5097/synopsys/dcs/syn/W-2024.09-SP5-3/libraries/syn /home/masthan5097/synopsys/dcs/syn/W-2024.09-SP5-3/dw/syn_ver /home/masthan5097/synopsys/dcs/syn/W-2024.09-SP5-3/dw/sim_ver /home/masthan5097/chipcraft_libs
+set link_library "* $target_library"
+* saed32rvt_ss0p95v125c.db
+set dbpath [file join $SAFE_DB_DIR $target_library]
+/home/masthan5097/chipcraft_libs/saed32rvt_ss0p95v125c.db
+echo ">>> CHOSEN CORNER: $target_library  (probe: $probe_kind, [file size $dbpath] bytes)"
+>>> CHOSEN CORNER: saed32rvt_ss0p95v125c.db  (probe: unknown, 4104192 bytes)
+echo ">>> copied to space-free path: $dbpath  (search_path repointed here)"
+>>> copied to space-free path: /home/masthan5097/chipcraft_libs/saed32rvt_ss0p95v125c.db  (search_path repointed here)
+if {$probe_kind ne "ok-gzip"} {
+    set fh [open $dbpath r]; fconfigure $fh -translation binary
+    set head [read $fh 48]; close $fh
+    echo ">>> lib head: [string map [list \n \\n \t \\t] $head]"
+}
+>>> lib head: cÀ€@Ã¿À€À€À€À€À€ À€À€À€À€À€À€ÃµÀ€À€ÃÀ€À€Â§Â¨À€À€Âªa%Ã•À€À€À€À€À€À€
+# ---- fail LOUDLY and early instead of silently compiling garbage ----------
+if {![file exists $RTL_FILES]} {
+    echo "ERROR: '$RTL_FILES' not found -- run dc_shell from the REPO ROOT:"
+    echo "       dc_shell -f scripts/dc_synth.tcl |& tee results/synth/dc.log"
+    exit 1
+}
+file mkdir $OUT
+define_design_lib WORK -path ./work
+1
+#---------------------------------------------------------------------
+# 1) read RTL
+#---------------------------------------------------------------------
+analyze -format verilog $RTL_FILES
+Running PRESTO HDLC
+Compiling source file ./rtl/water_sched.v
+Presto compilation completed successfully.
+Loading db file '/home/masthan5097/chipcraft_libs/saed32rvt_ss0p95v125c.db'
+1
+elaborate $TOP
+Loading db file '/home/masthan5097/synopsys/dcs/syn/W-2024.09-SP5-3/libraries/syn/gtech.db'
+Loading db file '/home/masthan5097/synopsys/dcs/syn/W-2024.09-SP5-3/libraries/syn/standard.sldb'
+  Loading link library 'saed32rvt_ss0p95v125c'
+  Loading link library 'gtech'
+Running PRESTO HDLC
+
+Statistics for case statements in always block in file
+	'./rtl/water_sched.v'
+============================================================
+|    Line    |  full/ parallel  |      block location      |
+============================================================
+|    158     |    auto/auto     | always block at line 145 |
+============================================================
+
+Inferred memory devices in process in routine 'water_sched' in file
+	 ./rtl/water_sched.v'.
+==================================================================================
+|    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
+==================================================================================
+|   zone_cycles_reg   | Flip-flop |  64   |  Y  | N  | None  | Async | N  | 145  |
+|      win_r_reg      | Flip-flop |   4   |  Y  | N  | None  | Async | N  | 145  |
+|      state_reg      | Flip-flop |   3   |  Y  | N  | None  | Async | N  | 145  |
+|     valve_r_reg     | Flip-flop |   4   |  Y  | N  | None  | Async | N  | 145  |
+|   cycles_done_reg   | Flip-flop |  32   |  Y  | N  | None  | Async | N  | 145  |
+|      timer_reg      | Flip-flop |  16   |  Y  | N  | None  | Async | N  | 145  |
+|  insufficient_reg   | Flip-flop |   1   |  N  | N  | None  | Async | N  | 145  |
+==================================================================================
+Presto compilation completed successfully. (water_sched)
+Module: water_sched, Ports: 164, Input: 55, Output: 109, Inout: 0
+Module: water_sched, Registers: 124, Async set/reset: 124, Sync set/reset: 0
+Information: Module water_sched report end. (ELAB-965)
+Elaborated 1 design.
+Current design is now 'water_sched'.
+1
+current_design $TOP
+Current design is 'water_sched'.
+{water_sched}
+link
+
+  Linking design 'water_sched'
+  Using the following designs and libraries:
+  --------------------------------------------------------------------------
+  water_sched                 /home/masthan5097/Downloads/chipcraft-diy/chipcraft/water_sched.db
+  saed32rvt_ss0p95v125c (library) /home/masthan5097/chipcraft_libs/saed32rvt_ss0p95v125c.db
+
+1
+# guard: did the SAED target library ACTUALLY link? (UID-3/UIO-3 proof check)
+set nlib 0
+0
+catch {set nlib [sizeof_collection [get_libs *saed32*]]}
+0
+if {$nlib == 0} {
+    echo "ERROR: no SAED32 library linked -- search_path/target_library wrong?"
+    exit 1
+}
+echo ">>> SAED32 library linked OK ($nlib lib(s))"
+>>> SAED32 library linked OK (1 lib(s))
+uniquify
+1
+check_design > $OUT/check_design.rpt
+# READ THIS REPORT! look for: unmapped refs, latches, multi-driven nets
+#---------------------------------------------------------------------
+# 2) constraints
+#---------------------------------------------------------------------
+source $SDC_FILE
+Current design is 'water_sched'.
+Current design is 'water_sched'.
+report_clock  > $OUT/clocks.rpt
+#---------------------------------------------------------------------
+# 3) synthesis / optimization  (PPA = Power Performance Area)
+#---------------------------------------------------------------------
+# area goal: push area down
+set_max_area 0
+1
+# power switches (cheap wins for the 30% "synthesis quality" score)
+set_dynamic_optimization true
+1
+if {[shell_is_in_topographical_mode]} {
+    # topo mode only
+}
+set_leakage_optimization true
+1
+# map + optimize
+set cu_ok [compile_ultra]
+Loading db file '/home/masthan5097/synopsys/dcs/syn/W-2024.09-SP5-3/libraries/syn/dw_foundation.sldb'
+Warning: DesignWare synthetic library dw_foundation.sldb is added to the synthetic_library in the current command. (UISN-40)
+Information: Performing power optimization. (PWR-850)
+CPU Load: 7%, Ram Free: 6 GB, Swap Free: 7 GB, Work Disk Free: 48 GB, Tmp Disk Free: 48 GB
+Alib files are up-to-date.
+Warning: DesignWare synthetic library dw_foundation.sldb is added to the synthetic_library in the current command. (UISN-40)
+Information: Evaluating DesignWare library utilization. (UISN-27)
+
+============================================================================
+| DesignWare Building Block Library  |         Version         | Available |
+============================================================================
+| Basic DW Building Blocks           | W-2024.09-DWBB_202409.5 |     *     |
+| Licensed DW Building Blocks        | W-2024.09-DWBB_202409.5 |     *     |
+============================================================================
+
+====================================================================================================
+| Flow Information                                                                                 |
+----------------------------------------------------------------------------------------------------
+| Flow         | Design Compiler WLM                                                               |
+| Command Line | compile_ultra                                                                     |
+====================================================================================================
+| Design Information                                      | Value                                  |
+====================================================================================================
+| Number of Scenarios                                     | 0                                      |
+| Leaf Cell Count                                         | 275                                    |
+| Number of User Hierarchies                              | 0                                      |
+| Sequential Cell Count                                   | 124                                    |
+| Macro Count                                             | 0                                      |
+| Pad Count                                               | 0                                      |
+| Number of Power Domains                                 | 0                                      |
+| Number of Path Groups                                   | 2                                      |
+| Number of VT Class                                      | 1                                      |
+| Number of Clocks                                        | 1                                      |
+| Number of Dont Touch Cells                              | 55                                     |
+| Number of Dont Touch Nets                               | 0                                      |
+| Number of Size Only Cells                               | 0                                      |
+| Design with Target Library Subset (with clock_path)     | false  (false )                        |
+| Design with UPF Data                                    | false                                  |
+====================================================================================================
+Information: Sequential output inversion is enabled.  SVF file must be used for formal verification. (OPT-1208)
+
+Information: There are 8 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+  Simplifying Design 'water_sched'
+
+Loaded alib file './alib-52/saed32rvt_ss0p95v125c.db.alib'
+Module: DW01_NAND2, Ports: 3, Input: 2, Output: 1, Inout: 0
+Module: DW01_NAND2, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+  Building model 'DW01_NAND2'
+Information: Ungrouping 0 of 1 hierarchies before Pass 1 (OPT-775)
+CPU Load: 7%, Ram Free: 6 GB, Swap Free: 7 GB, Work Disk Free: 48 GB, Tmp Disk Free: 48 GB
+Information: State dependent leakage is now switched from on to off.
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'water_sched'
+Information: Added key list 'DesignWare' to design 'water_sched'. (DDB-72)
+Information: The register 'state_reg[2]' is a constant and will be removed. (OPT-1206)
+ Implement Synthetic for 'water_sched'.
+CPU Load: 7%, Ram Free: 6 GB, Swap Free: 7 GB, Work Disk Free: 48 GB, Tmp Disk Free: 48 GB
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+Information: The library cell 'PMT3_RVT' in the library 'saed32rvt_ss0p95v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'PMT2_RVT' in the library 'saed32rvt_ss0p95v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'PMT1_RVT' in the library 'saed32rvt_ss0p95v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'NMT3_RVT' in the library 'saed32rvt_ss0p95v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'NMT2_RVT' in the library 'saed32rvt_ss0p95v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'NMT1_RVT' in the library 'saed32rvt_ss0p95v125c' is not characterized for internal power. (PWR-536)
+Information: The target library(s) contains cell(s), other than black boxes, that are not characterized for internal power. (PWR-24)
+
+Threshold voltage group cell usage:
+>> saed32cell_svt 100.00%
+
+  Beginning Mapping Optimizations  (Ultra High effort)
+  -------------------------------
+Information: There is no timing violation in design water_sched. Delay-based auto_ungroup will not be performed. (OPT-780)
+Information: The register 'timer_reg[15]' is a constant and will be removed. (OPT-1206)
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:01    1934.5      0.00       0.0       0.0                           142064736.0000
+    0:00:01    1934.5      0.00       0.0       0.0                           142064736.0000
+
+Threshold voltage group cell usage:
+>> saed32cell_svt 100.00%
+
+  Beginning Constant Register Removal
+  -----------------------------------
+    0:00:01    1934.5      0.00       0.0       0.0                           142064736.0000
+    0:00:01    1934.5      0.00       0.0       0.0                           142064736.0000
+
+Threshold voltage group cell usage:
+>> saed32cell_svt 100.00%
+
+  Beginning Global Optimizations
+  ------------------------------
+  Numerical Synthesis (Phase 1)
+  Numerical Synthesis (Phase 2)
+  Global Optimization (Phase 1)
+  Global Optimization (Phase 2)
+  Global Optimization (Phase 3)
+  Global Optimization (Phase 4)
+  Global Optimization (Phase 5)
+  Global Optimization (Phase 6)
+  Global Optimization (Phase 7)
+  Global Optimization (Phase 8)
+  Global Optimization (Phase 9)
+  Global Optimization (Phase 10)
+  Global Optimization (Phase 11)
+  Global Optimization (Phase 12)
+  Global Optimization (Phase 13)
+  Global Optimization (Phase 14)
+  Global Optimization (Phase 15)
+  Global Optimization (Phase 16)
+  Global Optimization (Phase 17)
+  Global Optimization (Phase 18)
+  Global Optimization (Phase 19)
+  Global Optimization (Phase 20)
+  Global Optimization (Phase 21)
+  Global Optimization (Phase 22)
+  Global Optimization (Phase 23)
+  Global Optimization (Phase 24)
+  Global Optimization (Phase 25)
+  Global Optimization (Phase 26)
+  Global Optimization (Phase 27)
+  Global Optimization (Phase 28)
+  Global Optimization (Phase 29)
+  Global Optimization (Phase 30)
+
+Threshold voltage group cell usage:
+>> saed32cell_svt 100.00%
+
+  Beginning Isolate Ports
+  -----------------------
+
+Threshold voltage group cell usage:
+>> saed32cell_svt 100.00%
+
+  Beginning Delay Optimization
+  ----------------------------
+    0:00:01    1767.1      0.00       0.0       0.0                           98478904.0000
+    0:00:01    1767.1      0.00       0.0       0.0                           98478904.0000
+    0:00:01    1767.1      0.00       0.0       0.0                           98478904.0000
+    0:00:01    1767.1      0.00       0.0       0.0                           98478904.0000
+
+Threshold voltage group cell usage:
+>> saed32cell_svt 100.00%
+    0:00:01    1767.1      0.00       0.0       0.0                           98478904.0000
+    0:00:01    1767.1      0.00       0.0       0.0                           98478904.0000
+
+  Beginning WLM Backend Optimization
+  --------------------------------------
+    0:00:01    1765.5      0.00       0.0       0.0                           98348800.0000
+    0:00:01    1765.5      0.00       0.0       0.0                           98348800.0000
+    0:00:01    1765.5      0.00       0.0       0.0                           98348800.0000
+    0:00:01    1765.5      0.00       0.0       0.0                           98348800.0000
+    0:00:01    1765.5      0.00       0.0       0.0                           98348800.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           97936464.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           95533904.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           95533904.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           95533904.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           95533904.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           95533904.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           95533904.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           95533904.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           95533904.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           95533904.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           95533904.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           95533904.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           95533904.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           95533904.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           95533904.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           95533904.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           95533904.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           95533904.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           95533904.0000
+    0:00:01    1764.5      0.00       0.0       0.0                           95533904.0000
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:01    1764.5      0.00       0.0       0.0                           95533904.0000
+    0:00:01    1760.7      0.00       0.0       0.0                           95222488.0000
+    0:00:01    1760.7      0.00       0.0       0.0                           95222488.0000
+    0:00:01    1760.7      0.00       0.0       0.0                           95222488.0000
+    0:00:01    1760.7      0.00       0.0       0.0                           95156200.0000
+    0:00:01    1760.7      0.00       0.0       0.0                           95156200.0000
+    0:00:01    1760.7      0.00       0.0       0.0                           95156200.0000
+    0:00:01    1760.7      0.00       0.0       0.0                           95156200.0000
+    0:00:01    1760.7      0.00       0.0       0.0                           95156200.0000
+    0:00:01    1760.7      0.00       0.0       0.0                           95156200.0000
+    0:00:01    1760.7      0.00       0.0       0.0                           95156200.0000
+CPU Load: 7%, Ram Free: 6 GB, Swap Free: 7 GB, Work Disk Free: 48 GB, Tmp Disk Free: 48 GB
+Loading db file '/home/masthan5097/chipcraft_libs/saed32rvt_ss0p95v125c.db'
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+Information: State dependent leakage is now switched from off to on.
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+CPU Load: 7%, Ram Free: 6 GB, Swap Free: 7 GB, Work Disk Free: 48 GB, Tmp Disk Free: 48 GB
+Information: Total number of MV cells in the design.
+----------------------------------------------------------------------------------------------------
+ MV Cells                                           Total Number                                   
+----------------------------------------------------------------------------------------------------
+ Level Shifter:                                     0                                             
+ Enable Level Shifter:                              0                                             
+ Isolation Cell:                                    0                                             
+ Retention Cell:                                    0                                             
+ Retention Clamp Cell:                              0                                             
+ Switch Cell:                                       0                                             
+ Always-On Cell:                                    0                                             
+ Repeater Cell:                                     0                                             
+
+----------------------------------------------------------------------------------------------------
+Unmapped MV Cells 
+----------------------------------------------------------------------------------------------------
+0 Isolation Cells are unmapped 
+0 Retention Clamp Cells are unmapped 
+----------------------------------------------------------------------------------------------------
+1
+if {!$cu_ok} {
+    echo "ERROR: compile_ultra FAILED (look for OPT-/UIO- errors above)."
+    echo "       NOT writing netlist/reports -- fix the library first."
+    exit 1
+}
+echo ">>> compile_ultra OK"
+>>> compile_ultra OK
+# if timing still failing (negative slack), try:
+#   compile_ultra -retime
+# if area too big, try:
+#   compile_ultra -no_autoungroup  (keep hierarchy -> smaller in some cases)
+#   optimize_netlist -area
+#---------------------------------------------------------------------
+# 4) reports  (these files go in your SUBMISSION - all 4!)
+#---------------------------------------------------------------------
+report_timing  -max_paths 20           > $OUT/timing.rpt
+report_area    -hierarchy              > $OUT/area.rpt
+report_power                            > $OUT/power.rpt
+report_qor                              > $OUT/qor.rpt
+report_constraint -all_violators        > $OUT/violations.rpt
+report_reference                        > $OUT/cells_used.rpt
+#---------------------------------------------------------------------
+# 5) write outputs
+#---------------------------------------------------------------------
+write -hierarchy -format verilog -output $OUT/${TOP}_netlist.v
+Writing verilog file '/home/masthan5097/Downloads/chipcraft-diy/chipcraft/results/synth/water_sched_netlist.v'.
+Warning: Verilog 'assign' or 'tran' statements are written out. (VO-4)
+1
+write_sdc  $OUT/${TOP}_out.sdc
+1
+write -format ddc -hierarchy -output $OUT/${TOP}.ddc
+Writing ddc file 'results/synth/water_sched.ddc'.
+1
+echo ">>> DONE. Check $OUT/timing.rpt -> need WNS >= 0 (no negative slack)"
+>>> DONE. Check results/synth/timing.rpt -> need WNS >= 0 (no negative slack)
+exit
+
+Memory usage for this session 232 Mbytes.
+Memory usage for this session including child processes 232 Mbytes.
+CPU usage for this session 4 seconds ( 0.00 hours ).
+Elapsed time for this session 13 seconds ( 0.00 hours ).
+
+Thank you...
