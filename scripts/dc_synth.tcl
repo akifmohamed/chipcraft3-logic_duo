@@ -21,13 +21,14 @@ set OUT        "results/synth"
 set LAB_DB_DIR "/home/govardhini5049/Downloads/pd_scripts-20250304T122158Z-001 modified/pd_scripts-20250304T122158Z-001/pd_scripts/ref/DBs"
 lappend search_path $LAB_DB_DIR
 
-# --- corner auto-pick + library HEALTH PROBE -------------------------------
-# The 07:50 lab run proved search_path is now correct (braced list entry) and
-# the file exists, yet DC still said UID-3 -> the .db FILE ITSELF is unreadable
-# (corrupted download / git-lfs stub / html / empty / directory / perms).
-# So we no longer trust names: every candidate is probed (dir? empty? perm?
-# stub? gzip? liberty?) and the first HEALTHY one wins.  .lib and .gz fallbacks
-# are included -- DC reads plain liberty and gzip natively (alib cache).
+# --- corner auto-pick + library HEALTH PROBE + space-free copy -------------
+# 07:57 findings: (a) the old picker grabbed an AUX library (dlvl = level
+# shifters, 160 KB) because "*25c*" matches "125c" -- aux families must never
+# be the primary target; (b) UID-3 survived even a brace-quoted search_path,
+# i.e. DC's internal resolver cannot handle the SPACE in the folder name at
+# all.  Strategy: probe health, SCORE corners (tt > ss0p95v125c > ss > ff,
+# aux +10 penalty), then COPY the winner into $HOME/chipcraft_libs (no space)
+# and point search_path exclusively at that copy.
 proc probe_lib {path} {
     if {[file isdirectory $path]}   { return bad-dir }
     if {[file size $path] == 0}     { return bad-empty }
@@ -44,24 +45,30 @@ proc probe_lib {path} {
         || [string match {*<!doctype*} $low]} { return bad-stub }
     return unknown
 }
+proc corner_score {name} {
+    set s 4
+    if {[string match *tt* $name]}          { set s 0 }
+    if {[string match *ss0p95v125c* $name]} { set s 1 }
+    if {[string match *ss* $name] && $s > 2} { set s 2 }
+    if {[string match *ff* $name] && $s > 3} { set s 3 }
+    if {[string match *_dlvl_* $name] || [string match *_ulvl_* $name]
+        || [string match *_pg_* $name]}     { set s [expr {$s + 10}] }
+    return $s
+}
 
-set target_library ""
-set probe_kind   ""
-foreach pat {*saed32rvt*tt*25c* *saed32rvt*typ*25c* *saed32rvt*25c* *saed32rvt*} {
+set cands {}
+foreach fam {saed32rvt saed32} {
     foreach ext {.db .lib .db.gz .lib.gz} {
-        foreach c [lsort [glob -nocomplain -directory $LAB_DB_DIR -- ${pat}${ext}]] {
+        foreach c [glob -nocomplain -directory $LAB_DB_DIR -- *${fam}*${ext}] {
             set k [probe_lib $c]
             if {[string match ok-* $k] || $k eq "unknown"} {
-                set target_library [file tail $c]
-                set probe_kind $k
-                break
+                lappend cands [list [corner_score [file tail $c]] [file tail $c] $k $c]
             }
         }
-        if {$target_library ne ""} break
     }
-    if {$target_library ne ""} break
+    if {[llength $cands]} break
 }
-if {$target_library eq ""} {
+if {![llength $cands]} {
     echo "ERROR: no readable SAED32 library in $LAB_DB_DIR -- probe results:"
     foreach c [lsort [glob -nocomplain -directory $LAB_DB_DIR -- *]] {
         echo "    [probe_lib $c]   $c"
@@ -70,9 +77,24 @@ if {$target_library eq ""} {
     echo "       the PDK zip (git-lfs/html stubs mean a broken download)."
     exit 1
 }
+set cands [lsort -index 0 -integer $cands]
+set pick          [lindex $cands 0]
+set target_library [lindex $pick 1]
+set probe_kind     [lindex $pick 2]
+set src_db         [lindex $pick 3]
+
+# space-free home for the library (DC's resolver cannot take the spaced path)
+set SAFE_DB_DIR "$env(HOME)/chipcraft_libs"
+file mkdir $SAFE_DB_DIR
+file copy -force $src_db [file join $SAFE_DB_DIR $target_library]
+set newpath {}
+foreach p $search_path { if {$p ne $LAB_DB_DIR} { lappend newpath $p } }
+lappend newpath $SAFE_DB_DIR
+set search_path $newpath
 set link_library "* $target_library"
-set dbpath [file join $LAB_DB_DIR $target_library]
+set dbpath [file join $SAFE_DB_DIR $target_library]
 echo ">>> CHOSEN CORNER: $target_library  (probe: $probe_kind, [file size $dbpath] bytes)"
+echo ">>> copied to space-free path: $dbpath  (search_path repointed here)"
 if {$probe_kind ne "ok-gzip"} {
     set fh [open $dbpath r]; fconfigure $fh -translation binary
     set head [read $fh 48]; close $fh
