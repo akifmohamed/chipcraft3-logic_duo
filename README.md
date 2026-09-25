@@ -85,7 +85,7 @@ python3 scripts/analyze_vcd.py results/sim/vcs_lab_wave.vcd   # exit 0 = PASS
 | Corner-case suite | reset mid-serve · priority tie · pump off · mid-flush pump loss · all-emergency · STRICT_PRIO mode | `docs/VERIFICATION.md` |
 | **VCS simulation (lab, 25 Sep)** | **PASS** — `errors=0`, `onehot_bad=0`, 41 serves, independent 8/8 VCD audit | `results/sim/VCS_LAB_RUN.md` |
 | Waveforms (from lab VCS dump) | overview + emergency + insufficient zooms | `results/sim/wave_*.png` |
-| DC synthesis (PPA) | **compile_ultra OK** (25 Sep, attempt #4) @ saed32rvt_ss0p95v125c, 10 ns — reports/netlist inbound | `results/synth/` |
+| DC synthesis (PPA) | **compile_ultra OK** (25 Sep, attempt #4) @ saed32rvt_ss0p95v125c, 10 ns — WNS +5.71 ns MET, 1760.71 um2, 160.5 uW, netlist+reports uploaded | `results/synth/` |
 | ICC2 layout | _at lab_ | `results/pnr/` |
 
 ## 🎯 Key values
