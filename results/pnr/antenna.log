@@ -1,0 +1,57 @@
+
+
+
+                              IC Compiler II (TM)
+
+                Version X-2025.06-SP1 for linux64 - Aug 01, 2025
+                            Base build date 7/7/2025
+
+                    Copyright (c) 1988 - 2025 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+   or distribution of this software is strictly prohibited.  Licensed Products
+     communicate with Synopsys servers for the purpose of providing software
+    updates, detecting software piracy and verifying that customers are using
+    Licensed Products in conformity with the applicable License Key for such
+  Licensed Products. Synopsys will use information gathered in connection with
+    this process to deliver software updates and pursue software pirates and
+                                   infringers.
+
+ Inclusivity & Diversity - Visit SolvNetPlus to read the "Synopsys Statement on
+            Inclusivity and Diversity" (Refer to article 000036315 at
+                        https://solvnetplus.synopsys.com)
+ 
+Information: Term was not able to be set up using xterm-256color . Using "xterm" by default instead. (CLE-10)
+open_lib water_sched_lib
+Information: Loading library file '/home/masthan5097/chipcraft3-logic_duo/water_sched_lib' (FILE-007)
+Information: Loading library file '/home/masthan5097/ref/CLIBs/saed32_rvt.ndm' (FILE-007)
+{water_sched_lib}
+open_block water_sched
+Information: User units loaded from library 'saed32_rvt|saed32_rvt_std' (LNK-040)
+Opening block 'water_sched_lib:water_sched.design' in edit mode
+{water_sched_lib:water_sched.design}
+source $env(HOME)/ref/tech/saed32nm_ant_1p9m.tcl
+1
+file mkdir results/pnr
+redirect results/pnr/antenna_rules.rpt { report_antenna_rules }
+puts "ANT-RULES: [get_antenna_rule_names]"
+ANT-RULES: 
+set r1 [catch { redirect results/pnr/antenna_check.rpt { check_antenna -verbose } }]
+1
+set r2 [catch { signoff_calculate_hier_antenna_property }]
+Using libraries: water_sched_lib saed32_rvt
+Visiting block water_sched_lib:water_sched.design
+Design 'water_sched' was successfully linked.
+Error: FRAME VIEW does not exist. (RT-120)
+1
+set r3 [catch { redirect -append results/pnr/antenna_check.rpt { report_antenna -all_violations } }]
+1
+puts "ANT-RESULTS r1=$r1 r2=$r2 r3=$r3"
+ANT-RESULTS r1=1 r2=1 r3=1
+exit
+Maximum memory usage for this session: 408.17 MB
+Maximum memory usage for this session including child processes: 408.17 MB
+CPU usage for this session:      5 seconds (  0.00 hours)
+Elapsed time for this session:      8 seconds (  0.00 hours)
+Thank you for using IC Compiler II.

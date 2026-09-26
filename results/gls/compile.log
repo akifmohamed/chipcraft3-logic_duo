@@ -1,0 +1,1187 @@
+Command: vcs -full64 -timescale=1ns/1ps results/pnr/water_sched_final.v tb/water_sched_tb.v \
+/home/masthan5097/SAED32nm_EDK_08_2025/SAED32_EDK/lib/stdcell_rvt/verilog/saed32nm.v \
+-top tb_water_sched -o results/gls/simv -l results/gls/compile.log
+                         Chronologic VCS (TM)
+      Version W-2024.09-SP2-4_Full64 -- Sat Sep 26 07:06:56 2026
+
+                    Copyright (c) 1991 - 2025 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+   or distribution of this software is strictly prohibited.  Licensed Products
+     communicate with Synopsys servers for the purpose of providing software
+    updates, detecting software piracy and verifying that customers are using
+    Licensed Products in conformity with the applicable License Key for such
+  Licensed Products. Synopsys will use information gathered in connection with
+    this process to deliver software updates and pursue software pirates and
+                                   infringers.
+
+ Inclusivity & Diversity - Visit SolvNetPlus to read the "Synopsys Statement on
+            Inclusivity and Diversity" (Refer to article 000036315 at
+                        https://solvnetplus.synopsys.com)
+
+Parsing design file 'results/pnr/water_sched_final.v'
+Parsing design file 'tb/water_sched_tb.v'
+Parsing design file '/home/masthan5097/SAED32nm_EDK_08_2025/SAED32_EDK/lib/stdcell_rvt/verilog/saed32nm.v'
+Top Level Modules:
+       tb_water_sched
+
+Warning-[AOUP] Attempt to override undefined parameter
+tb/water_sched_tb.v, 45
+  Attempting to override undefined parameter "NZONES", will ignore it.
+
+
+Warning-[AOUP] Attempt to override undefined parameter
+tb/water_sched_tb.v, 45
+  Attempting to override undefined parameter "DATA_W", will ignore it.
+
+
+Warning-[AOUP] Attempt to override undefined parameter
+tb/water_sched_tb.v, 45
+  Attempting to override undefined parameter "SERVE_CYCLES", will ignore it.
+
+
+Warning-[AOUP] Attempt to override undefined parameter
+tb/water_sched_tb.v, 140
+  Attempting to override undefined parameter "NZONES", will ignore it.
+
+
+Warning-[AOUP] Attempt to override undefined parameter
+tb/water_sched_tb.v, 140
+  Attempting to override undefined parameter "DATA_W", will ignore it.
+
+
+Warning-[AOUP] Attempt to override undefined parameter
+tb/water_sched_tb.v, 140
+  Attempting to override undefined parameter "SERVE_CYCLES", will ignore it.
+
+
+Warning-[AOUP] Attempt to override undefined parameter
+tb/water_sched_tb.v, 140
+  Attempting to override undefined parameter "STRICT_PRIO", will ignore it.
+
+TimeScale is 1 ps / 1 ps
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 32
+water_sched, "DFFARX1_RVT \state_reg[1] ( .D (n206),  .CLK (ctosc_gls_0),  .RSTB (rst_n),  .Q (status[1]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 34
+water_sched, "DFFARX1_RVT \win_r_reg[0] ( .D (n211),  .CLK (ctosc_gls_0),  .RSTB (rst_n),  .Q (win_r[0]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 36
+water_sched, "DFFARX1_RVT \zone_cycles_reg[15] ( .D (n205),  .CLK (ZCTSNET_1),  .RSTB (HFSNET_24),  .Q (zone_cycles[15]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 38
+water_sched, "DFFARX1_RVT \zone_cycles_reg[0] ( .D (n204),  .CLK (ZCTSNET_1),  .RSTB (HFSNET_24),  .Q (zone_cycles[0]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 40
+water_sched, "DFFARX1_RVT \zone_cycles_reg[1] ( .D (n203),  .CLK (ZCTSNET_1),  .RSTB (HFSNET_24),  .Q (zone_cycles[1]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 42
+water_sched, "DFFARX1_RVT \zone_cycles_reg[2] ( .D (n202),  .CLK (ZCTSNET_1),  .RSTB (HFSNET_24),  .Q (zone_cycles[2]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 44
+water_sched, "DFFARX1_RVT \zone_cycles_reg[3] ( .D (n201),  .CLK (ZCTSNET_1),  .RSTB (HFSNET_24),  .Q (zone_cycles[3]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 46
+water_sched, "DFFARX1_RVT \zone_cycles_reg[4] ( .D (n200),  .CLK (ZCTSNET_1),  .RSTB (HFSNET_24),  .Q (zone_cycles[4]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 48
+water_sched, "DFFARX1_RVT \zone_cycles_reg[5] ( .D (n199),  .CLK (ZCTSNET_1),  .RSTB (HFSNET_24),  .Q (zone_cycles[5]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 50
+water_sched, "DFFARX1_RVT \zone_cycles_reg[6] ( .D (n198),  .CLK (ZCTSNET_1),  .RSTB (HFSNET_24),  .Q (zone_cycles[6]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 52
+water_sched, "DFFARX1_RVT \zone_cycles_reg[7] ( .D (n197),  .CLK (ZCTSNET_1),  .RSTB (HFSNET_24),  .Q (zone_cycles[7]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 54
+water_sched, "DFFARX1_RVT \zone_cycles_reg[8] ( .D (n196),  .CLK (ZCTSNET_1),  .RSTB (HFSNET_24),  .Q (zone_cycles[8]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 56
+water_sched, "DFFARX1_RVT \zone_cycles_reg[9] ( .D (n195),  .CLK (ZCTSNET_1),  .RSTB (HFSNET_24),  .Q (zone_cycles[9]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 58
+water_sched, "DFFARX1_RVT \zone_cycles_reg[10] ( .D (n194),  .CLK (ZCTSNET_1),  .RSTB (HFSNET_24),  .Q (zone_cycles[10]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 60
+water_sched, "DFFARX1_RVT \zone_cycles_reg[11] ( .D (n193),  .CLK (ZCTSNET_1),  .RSTB (HFSNET_24),  .Q (zone_cycles[11]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 62
+water_sched, "DFFARX1_RVT \zone_cycles_reg[12] ( .D (n192),  .CLK (ZCTSNET_1),  .RSTB (HFSNET_24),  .Q (zone_cycles[12]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 64
+water_sched, "DFFARX1_RVT \zone_cycles_reg[13] ( .D (n191),  .CLK (ZCTSNET_1),  .RSTB (HFSNET_24),  .Q (zone_cycles[13]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 66
+water_sched, "DFFARX1_RVT \zone_cycles_reg[14] ( .D (n190),  .CLK (ZCTSNET_1),  .RSTB (HFSNET_24),  .Q (zone_cycles[14]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 68
+water_sched, "DFFARX1_RVT \win_r_reg[3] ( .D (n210),  .CLK (ctosc_gls_0),  .RSTB (HFSNET_25),  .Q (win_r[3]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 70
+water_sched, "DFFARX1_RVT \zone_cycles_reg[63] ( .D (n157),  .CLK (ctosc_gls_0),  .RSTB (HFSNET_25),  .Q (zone_cycles[63]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 72
+water_sched, "DFFARX1_RVT \zone_cycles_reg[48] ( .D (n156),  .CLK (ZCTSNET_0),  .RSTB (HFSNET_25),  .Q (zone_cycles[48]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 74
+water_sched, "DFFARX1_RVT \zone_cycles_reg[49] ( .D (n155),  .CLK (ZCTSNET_0),  .RSTB (HFSNET_23),  .Q (zone_cycles[49]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 76
+water_sched, "DFFARX1_RVT \zone_cycles_reg[50] ( .D (n154),  .CLK (ZCTSNET_0),  .RSTB (HFSNET_23),  .Q (zone_cycles[50]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 78
+water_sched, "DFFARX1_RVT \zone_cycles_reg[51] ( .D (n153),  .CLK (ZCTSNET_0),  .RSTB (HFSNET_23),  .Q (zone_cycles[51]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 80
+water_sched, "DFFARX1_RVT \zone_cycles_reg[52] ( .D (n152),  .CLK (ZCTSNET_0),  .RSTB (HFSNET_23),  .Q (zone_cycles[52]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 82
+water_sched, "DFFARX1_RVT \zone_cycles_reg[53] ( .D (n151),  .CLK (ZCTSNET_0),  .RSTB (HFSNET_23),  .Q (zone_cycles[53]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 84
+water_sched, "DFFARX1_RVT \zone_cycles_reg[54] ( .D (n150),  .CLK (ZCTSNET_0),  .RSTB (HFSNET_25),  .Q (zone_cycles[54]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 86
+water_sched, "DFFARX1_RVT \zone_cycles_reg[55] ( .D (n149),  .CLK (ZCTSNET_0),  .RSTB (HFSNET_25),  .Q (zone_cycles[55]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 88
+water_sched, "DFFARX1_RVT \zone_cycles_reg[56] ( .D (n148),  .CLK (ZCTSNET_0),  .RSTB (HFSNET_25),  .Q (zone_cycles[56]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 90
+water_sched, "DFFARX1_RVT \zone_cycles_reg[57] ( .D (n147),  .CLK (ZCTSNET_0),  .RSTB (HFSNET_25),  .Q (zone_cycles[57]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 92
+water_sched, "DFFARX1_RVT \zone_cycles_reg[58] ( .D (n146),  .CLK (ZCTSNET_0),  .RSTB (HFSNET_25),  .Q (zone_cycles[58]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 94
+water_sched, "DFFARX1_RVT \zone_cycles_reg[59] ( .D (n145),  .CLK (ZCTSNET_0),  .RSTB (HFSNET_25),  .Q (zone_cycles[59]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 96
+water_sched, "DFFARX1_RVT \zone_cycles_reg[60] ( .D (n144),  .CLK (ZCTSNET_0),  .RSTB (HFSNET_25),  .Q (zone_cycles[60]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 98
+water_sched, "DFFARX1_RVT \zone_cycles_reg[61] ( .D (n143),  .CLK (ZCTSNET_0),  .RSTB (HFSNET_25),  .Q (zone_cycles[61]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 100
+water_sched, "DFFARX1_RVT \zone_cycles_reg[62] ( .D (n142),  .CLK (ctosc_gls_0),  .RSTB (HFSNET_25),  .Q (zone_cycles[62]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 102
+water_sched, "DFFARX1_RVT \win_r_reg[2] ( .D (n209),  .CLK (ctosc_gls_0),  .RSTB (HFSNET_25),  .Q (win_r[2]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 104
+water_sched, "DFFARX1_RVT \zone_cycles_reg[47] ( .D (n173),  .CLK (ZCTSNET_0),  .RSTB (HFSNET_23),  .Q (zone_cycles[47]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 106
+water_sched, "DFFARX1_RVT \zone_cycles_reg[32] ( .D (n172),  .CLK (ZCTSNET_0),  .RSTB (HFSNET_23),  .Q (zone_cycles[32]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 108
+water_sched, "DFFARX1_RVT \zone_cycles_reg[33] ( .D (n171),  .CLK (ZCTSNET_0),  .RSTB (HFSNET_23),  .Q (zone_cycles[33]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 110
+water_sched, "DFFARX1_RVT \zone_cycles_reg[34] ( .D (n170),  .CLK (ZCTSNET_0),  .RSTB (HFSNET_23),  .Q (zone_cycles[34]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 112
+water_sched, "DFFARX1_RVT \zone_cycles_reg[35] ( .D (n169),  .CLK (ZCTSNET_0),  .RSTB (HFSNET_23),  .Q (zone_cycles[35]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 114
+water_sched, "DFFARX1_RVT \zone_cycles_reg[36] ( .D (n168),  .CLK (ZCTSNET_0),  .RSTB (HFSNET_23),  .Q (zone_cycles[36]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 116
+water_sched, "DFFARX1_RVT \zone_cycles_reg[37] ( .D (n167),  .CLK (ZCTSNET_0),  .RSTB (HFSNET_23),  .Q (zone_cycles[37]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 118
+water_sched, "DFFARX1_RVT \zone_cycles_reg[38] ( .D (n166),  .CLK (ZCTSNET_0),  .RSTB (HFSNET_23),  .Q (zone_cycles[38]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 120
+water_sched, "DFFARX1_RVT \zone_cycles_reg[39] ( .D (n165),  .CLK (ZCTSNET_1),  .RSTB (HFSNET_23),  .Q (zone_cycles[39]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 122
+water_sched, "DFFARX1_RVT \zone_cycles_reg[40] ( .D (n164),  .CLK (ZCTSNET_0),  .RSTB (HFSNET_23),  .Q (zone_cycles[40]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 124
+water_sched, "DFFARX1_RVT \zone_cycles_reg[41] ( .D (n163),  .CLK (ZCTSNET_0),  .RSTB (HFSNET_23),  .Q (zone_cycles[41]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 126
+water_sched, "DFFARX1_RVT \zone_cycles_reg[42] ( .D (n162),  .CLK (ZCTSNET_0),  .RSTB (HFSNET_23),  .Q (zone_cycles[42]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 128
+water_sched, "DFFARX1_RVT \zone_cycles_reg[43] ( .D (n161),  .CLK (ZCTSNET_0),  .RSTB (HFSNET_23),  .Q (zone_cycles[43]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 130
+water_sched, "DFFARX1_RVT \zone_cycles_reg[44] ( .D (n160),  .CLK (ZCTSNET_0),  .RSTB (HFSNET_23),  .Q (zone_cycles[44]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 132
+water_sched, "DFFARX1_RVT \zone_cycles_reg[45] ( .D (n159),  .CLK (ZCTSNET_0),  .RSTB (HFSNET_23),  .Q (zone_cycles[45]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 134
+water_sched, "DFFARX1_RVT \zone_cycles_reg[46] ( .D (n158),  .CLK (ZCTSNET_0),  .RSTB (HFSNET_23),  .Q (zone_cycles[46]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 136
+water_sched, "DFFARX1_RVT \win_r_reg[1] ( .D (n208),  .CLK (ctosc_gls_0),  .RSTB (HFSNET_25),  .Q (win_r[1]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 138
+water_sched, "DFFARX1_RVT \zone_cycles_reg[31] ( .D (n189),  .CLK (ZCTSNET_0),  .RSTB (HFSNET_23),  .Q (zone_cycles[31]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 140
+water_sched, "DFFARX1_RVT \zone_cycles_reg[16] ( .D (n188),  .CLK (ZCTSNET_1),  .RSTB (HFSNET_24),  .Q (zone_cycles[16]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 142
+water_sched, "DFFARX1_RVT \zone_cycles_reg[17] ( .D (n187),  .CLK (ZCTSNET_1),  .RSTB (HFSNET_24),  .Q (zone_cycles[17]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 144
+water_sched, "DFFARX1_RVT \zone_cycles_reg[18] ( .D (n186),  .CLK (ZCTSNET_1),  .RSTB (HFSNET_23),  .Q (zone_cycles[18]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 146
+water_sched, "DFFARX1_RVT \zone_cycles_reg[19] ( .D (n185),  .CLK (ZCTSNET_1),  .RSTB (HFSNET_24),  .Q (zone_cycles[19]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 148
+water_sched, "DFFARX1_RVT \zone_cycles_reg[20] ( .D (n184),  .CLK (ZCTSNET_1),  .RSTB (HFSNET_24),  .Q (zone_cycles[20]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 150
+water_sched, "DFFARX1_RVT \zone_cycles_reg[21] ( .D (n183),  .CLK (ZCTSNET_1),  .RSTB (HFSNET_24),  .Q (zone_cycles[21]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 152
+water_sched, "DFFARX1_RVT \zone_cycles_reg[22] ( .D (n182),  .CLK (ZCTSNET_1),  .RSTB (HFSNET_24),  .Q (zone_cycles[22]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 154
+water_sched, "DFFARX1_RVT \zone_cycles_reg[23] ( .D (n181),  .CLK (ZCTSNET_1),  .RSTB (HFSNET_23),  .Q (zone_cycles[23]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 156
+water_sched, "DFFARX1_RVT \zone_cycles_reg[24] ( .D (n180),  .CLK (ZCTSNET_1),  .RSTB (HFSNET_23),  .Q (zone_cycles[24]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 158
+water_sched, "DFFARX1_RVT \zone_cycles_reg[25] ( .D (n179),  .CLK (ZCTSNET_1),  .RSTB (HFSNET_23),  .Q (zone_cycles[25]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 160
+water_sched, "DFFARX1_RVT \zone_cycles_reg[26] ( .D (n178),  .CLK (ZCTSNET_0),  .RSTB (HFSNET_23),  .Q (zone_cycles[26]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 162
+water_sched, "DFFARX1_RVT \zone_cycles_reg[27] ( .D (n177),  .CLK (ZCTSNET_1),  .RSTB (HFSNET_23),  .Q (zone_cycles[27]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 164
+water_sched, "DFFARX1_RVT \zone_cycles_reg[28] ( .D (n176),  .CLK (ZCTSNET_0),  .RSTB (HFSNET_23),  .Q (zone_cycles[28]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 166
+water_sched, "DFFARX1_RVT \zone_cycles_reg[29] ( .D (n175),  .CLK (ZCTSNET_0),  .RSTB (HFSNET_23),  .Q (zone_cycles[29]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 168
+water_sched, "DFFARX1_RVT \zone_cycles_reg[30] ( .D (n174),  .CLK (ZCTSNET_0),  .RSTB (HFSNET_23),  .Q (zone_cycles[30]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 170
+water_sched, "DFFARX1_RVT \valve_r_reg[3] ( .D (n138),  .CLK (ctosc_gls_0),  .RSTB (HFSNET_25),  .Q (valve_open[3]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 172
+water_sched, "DFFARX1_RVT \valve_r_reg[2] ( .D (n139),  .CLK (ctosc_gls_0),  .RSTB (rst_n),  .Q (valve_open[2]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 174
+water_sched, "DFFARX1_RVT \valve_r_reg[1] ( .D (n140),  .CLK (ctosc_gls_0),  .RSTB (rst_n),  .Q (valve_open[1]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 176
+water_sched, "DFFARX1_RVT \valve_r_reg[0] ( .D (n141),  .CLK (ctosc_gls_0),  .RSTB (rst_n),  .Q (valve_open[0]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 178
+water_sched, "DFFARX1_RVT \cycles_done_reg[31] ( .D (n257),  .CLK (ctosc_gls_0),  .RSTB (rst_n),  .Q (cycles_done[31]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 180
+water_sched, "DFFARX1_RVT \cycles_done_reg[30] ( .D (n226),  .CLK (ctosc_gls_0),  .RSTB (rst_n),  .Q (cycles_done[30]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 182
+water_sched, "DFFARX1_RVT \cycles_done_reg[29] ( .D (n227),  .CLK (ctosc_gls_0),  .RSTB (rst_n),  .Q (cycles_done[29]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 184
+water_sched, "DFFARX1_RVT \cycles_done_reg[28] ( .D (n228),  .CLK (ctosc_gls_0),  .RSTB (rst_n),  .Q (cycles_done[28]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 186
+water_sched, "DFFARX1_RVT \cycles_done_reg[27] ( .D (n229),  .CLK (ctosc_gls_0),  .RSTB (rst_n),  .Q (cycles_done[27]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 188
+water_sched, "DFFARX1_RVT \cycles_done_reg[26] ( .D (n230),  .CLK (ctosc_gls_0),  .RSTB (rst_n),  .Q (cycles_done[26]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 190
+water_sched, "DFFARX1_RVT \cycles_done_reg[25] ( .D (n231),  .CLK (ctosc_gls_0),  .RSTB (rst_n),  .Q (cycles_done[25]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 192
+water_sched, "DFFARX1_RVT \cycles_done_reg[24] ( .D (n232),  .CLK (ctosc_gls_0),  .RSTB (rst_n),  .Q (cycles_done[24]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 194
+water_sched, "DFFARX1_RVT \cycles_done_reg[23] ( .D (n233),  .CLK (ctosc_gls_0),  .RSTB (rst_n),  .Q (cycles_done[23]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 196
+water_sched, "DFFARX1_RVT \cycles_done_reg[22] ( .D (n234),  .CLK (ctosc_gls_0),  .RSTB (rst_n),  .Q (cycles_done[22]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 198
+water_sched, "DFFARX1_RVT \cycles_done_reg[21] ( .D (n235),  .CLK (ctosc_gls_0),  .RSTB (rst_n),  .Q (cycles_done[21]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 200
+water_sched, "DFFARX1_RVT \cycles_done_reg[20] ( .D (n236),  .CLK (ctosc_gls_0),  .RSTB (rst_n),  .Q (cycles_done[20]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 202
+water_sched, "DFFARX1_RVT \cycles_done_reg[19] ( .D (n237),  .CLK (ctosc_gls_0),  .RSTB (rst_n),  .Q (cycles_done[19]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 204
+water_sched, "DFFARX1_RVT \cycles_done_reg[18] ( .D (n238),  .CLK (ctosc_gls_0),  .RSTB (rst_n),  .Q (cycles_done[18]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 206
+water_sched, "DFFARX1_RVT \cycles_done_reg[17] ( .D (n239),  .CLK (ctosc_gls_0),  .RSTB (rst_n),  .Q (cycles_done[17]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 208
+water_sched, "DFFARX1_RVT \cycles_done_reg[16] ( .D (n240),  .CLK (ctosc_gls_0),  .RSTB (rst_n),  .Q (cycles_done[16]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 210
+water_sched, "DFFARX1_RVT \cycles_done_reg[15] ( .D (n241),  .CLK (ctosc_gls_0),  .RSTB (rst_n),  .Q (cycles_done[15]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 212
+water_sched, "DFFARX1_RVT \cycles_done_reg[14] ( .D (n242),  .CLK (ctosc_gls_0),  .RSTB (rst_n),  .Q (cycles_done[14]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 214
+water_sched, "DFFARX1_RVT \cycles_done_reg[13] ( .D (n243),  .CLK (ctosc_gls_0),  .RSTB (rst_n),  .Q (cycles_done[13]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 216
+water_sched, "DFFARX1_RVT \cycles_done_reg[12] ( .D (n244),  .CLK (ctosc_gls_0),  .RSTB (HFSNET_25),  .Q (cycles_done[12]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 218
+water_sched, "DFFARX1_RVT \cycles_done_reg[11] ( .D (n245),  .CLK (ctosc_gls_0),  .RSTB (HFSNET_25),  .Q (cycles_done[11]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 220
+water_sched, "DFFARX1_RVT \cycles_done_reg[10] ( .D (n246),  .CLK (ctosc_gls_0),  .RSTB (HFSNET_25),  .Q (cycles_done[10]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 222
+water_sched, "DFFARX1_RVT \cycles_done_reg[9] ( .D (n247),  .CLK (ctosc_gls_0),  .RSTB (HFSNET_25),  .Q (cycles_done[9]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 224
+water_sched, "DFFARX1_RVT \cycles_done_reg[8] ( .D (n248),  .CLK (ctosc_gls_0),  .RSTB (HFSNET_25),  .Q (cycles_done[8]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 226
+water_sched, "DFFARX1_RVT \cycles_done_reg[7] ( .D (n249),  .CLK (ctosc_gls_0),  .RSTB (HFSNET_25),  .Q (cycles_done[7]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 228
+water_sched, "DFFARX1_RVT \cycles_done_reg[6] ( .D (n250),  .CLK (ctosc_gls_0),  .RSTB (HFSNET_25),  .Q (cycles_done[6]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 230
+water_sched, "DFFARX1_RVT \cycles_done_reg[5] ( .D (n251),  .CLK (ctosc_gls_0),  .RSTB (HFSNET_25),  .Q (cycles_done[5]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 232
+water_sched, "DFFARX1_RVT \cycles_done_reg[4] ( .D (n252),  .CLK (ZCTSNET_0),  .RSTB (HFSNET_25),  .Q (cycles_done[4]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 234
+water_sched, "DFFARX1_RVT \cycles_done_reg[3] ( .D (n253),  .CLK (ctosc_gls_0),  .RSTB (HFSNET_25),  .Q (cycles_done[3]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 236
+water_sched, "DFFARX1_RVT \cycles_done_reg[2] ( .D (n254),  .CLK (ZCTSNET_0),  .RSTB (HFSNET_25),  .Q (cycles_done[2]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 238
+water_sched, "DFFARX1_RVT \cycles_done_reg[1] ( .D (n255),  .CLK (ctosc_gls_0),  .RSTB (HFSNET_25),  .Q (cycles_done[1]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 248
+water_sched, "DFFARX1_RVT \timer_reg[11] ( .D (n222),  .CLK (ZCTSNET_0),  .RSTB (HFSNET_23),  .Q (timer[11]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 252
+water_sched, "DFFARX1_RVT \timer_reg[9] ( .D (n220),  .CLK (ZCTSNET_1),  .RSTB (HFSNET_24),  .Q (timer[9]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 256
+water_sched, "DFFARX1_RVT \timer_reg[7] ( .D (n218),  .CLK (ZCTSNET_1),  .RSTB (HFSNET_24),  .Q (timer[7]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 260
+water_sched, "DFFARX1_RVT \timer_reg[5] ( .D (n216),  .CLK (ctosc_gls_0),  .RSTB (HFSNET_25),  .QN (n564));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 264
+water_sched, "DFFARX1_RVT \timer_reg[3] ( .D (n214),  .CLK (ZCTSNET_1),  .RSTB (HFSNET_24),  .Q (timer[3]));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 272
+water_sched, "DFFARX1_RVT insufficient_reg( .D (unserved_exists),  .CLK (ZCTSNET_1),  .RSTB (HFSNET_24),  .Q (insufficient));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 476
+water_sched, "HADDX1_RVT U400( .A0 (n334),  .B0 (cycles_done[31]),  .SO (n257));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 485
+water_sched, "HADDX1_RVT U405( .A0 (cycles_done[2]),  .B0 (n337),  .SO (n254));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 491
+water_sched, "HADDX1_RVT U409( .A0 (cycles_done[4]),  .B0 (n340),  .SO (n252));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 497
+water_sched, "HADDX1_RVT U413( .A0 (cycles_done[6]),  .B0 (n343),  .SO (n250));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 503
+water_sched, "HADDX1_RVT U417( .A0 (cycles_done[8]),  .B0 (n346),  .SO (n248));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 509
+water_sched, "HADDX1_RVT U421( .A0 (cycles_done[10]),  .B0 (n349),  .SO (n246));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 515
+water_sched, "HADDX1_RVT U425( .A0 (cycles_done[12]),  .B0 (n352),  .SO (n244));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 521
+water_sched, "HADDX1_RVT U429( .A0 (cycles_done[14]),  .B0 (n355),  .SO (n242));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 527
+water_sched, "HADDX1_RVT U433( .A0 (cycles_done[16]),  .B0 (n358),  .SO (n240));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 531
+water_sched, "HADDX1_RVT U436( .A0 (cycles_done[18]),  .B0 (n333),  .SO (n238));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 669
+water_sched, "HADDX1_RVT U529( .A0 (n432),  .B0 (zone_cycles[15]),  .SO (n205));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 680
+water_sched, "HADDX1_RVT U536( .A0 (zone_cycles[2]),  .B0 (n436),  .SO (n202));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 732
+water_sched, "HADDX1_RVT U575( .A0 (n461),  .B0 (zone_cycles[31]),  .SO (n189));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 743
+water_sched, "HADDX1_RVT U582( .A0 (zone_cycles[18]),  .B0 (n465),  .SO (n186));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 795
+water_sched, "HADDX1_RVT U621( .A0 (n490),  .B0 (zone_cycles[47]),  .SO (n173));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 806
+water_sched, "HADDX1_RVT U628( .A0 (zone_cycles[34]),  .B0 (n494),  .SO (n170));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 858
+water_sched, "HADDX1_RVT U667( .A0 (n520),  .B0 (zone_cycles[63]),  .SO (n157));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[TFIPC] Too few instance port connections
+results/pnr/water_sched_final.v, 869
+water_sched, "HADDX1_RVT U674( .A0 (zone_cycles[50]),  .B0 (n524),  .SO (n154));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+
+Warning-[PCWM-W] Port connection width mismatch
+tb/water_sched_tb.v, 140
+"water_sched dut_strict( .clk (clk),  .rst_n (rst_n),  .zone_req ({rs1, rs0}),  .zone_prio ({ps1, ps0}),  .zone_demand ({ds1, ds0}),  .supply_avail (ss),  .supply_valid (ssv),  .valve_open (sv),  .grant_ack (sa),  .cycles_done (scd),  .zone_cycles (szc),  .insufficient (si),  .busy (sbusy),  .status (sstatus));"
+  The following 2-bit expression is connected to 4-bit port "zone_req" of 
+  module "water_sched", instance "dut_strict".
+  Expression: {rs1, rs0}
+  Instantiated module defined at: "results/pnr/water_sched_final.v", 7
+  Use +lint=PCWM for more details.
+
+
+Warning-[PCWM-W] Port connection width mismatch
+tb/water_sched_tb.v, 140
+"water_sched dut_strict( .clk (clk),  .rst_n (rst_n),  .zone_req ({rs1, rs0}),  .zone_prio ({ps1, ps0}),  .zone_demand ({ds1, ds0}),  .supply_avail (ss),  .supply_valid (ssv),  .valve_open (sv),  .grant_ack (sa),  .cycles_done (scd),  .zone_cycles (szc),  .insufficient (si),  .busy (sbusy),  .status (sstatus));"
+  The following 4-bit expression is connected to 8-bit port "zone_prio" of 
+  module "water_sched", instance "dut_strict".
+  Expression: {ps1, ps0}
+  Instantiated module defined at: "results/pnr/water_sched_final.v", 7
+  Use +lint=PCWM for more details.
+
+
+Warning-[PCWM-W] Port connection width mismatch
+tb/water_sched_tb.v, 140
+"water_sched dut_strict( .clk (clk),  .rst_n (rst_n),  .zone_req ({rs1, rs0}),  .zone_prio ({ps1, ps0}),  .zone_demand ({ds1, ds0}),  .supply_avail (ss),  .supply_valid (ssv),  .valve_open (sv),  .grant_ack (sa),  .cycles_done (scd),  .zone_cycles (szc),  .insufficient (si),  .busy (sbusy),  .status (sstatus));"
+  The following 16-bit expression is connected to 32-bit port "zone_demand" of
+  module "water_sched", instance "dut_strict".
+  Expression: {ds1, ds0}
+  Instantiated module defined at: "results/pnr/water_sched_final.v", 7
+  Use +lint=PCWM for more details.
+
+
+Warning-[PCWM-W] Port connection width mismatch
+tb/water_sched_tb.v, 140
+"water_sched dut_strict( .clk (clk),  .rst_n (rst_n),  .zone_req ({rs1, rs0}),  .zone_prio ({ps1, ps0}),  .zone_demand ({ds1, ds0}),  .supply_avail (ss),  .supply_valid (ssv),  .valve_open (sv),  .grant_ack (sa),  .cycles_done (scd),  .zone_cycles (szc),  .insufficient (si),  .busy (sbusy),  .status (sstatus));"
+  The following 2-bit expression is connected to 4-bit port "valve_open" of 
+  module "water_sched", instance "dut_strict".
+  Expression: sv
+  Instantiated module defined at: "results/pnr/water_sched_final.v", 7
+  Use +lint=PCWM for more details.
+
+
+Warning-[PCWM-W] Port connection width mismatch
+tb/water_sched_tb.v, 140
+"water_sched dut_strict( .clk (clk),  .rst_n (rst_n),  .zone_req ({rs1, rs0}),  .zone_prio ({ps1, ps0}),  .zone_demand ({ds1, ds0}),  .supply_avail (ss),  .supply_valid (ssv),  .valve_open (sv),  .grant_ack (sa),  .cycles_done (scd),  .zone_cycles (szc),  .insufficient (si),  .busy (sbusy),  .status (sstatus));"
+  The following 2-bit expression is connected to 4-bit port "grant_ack" of 
+  module "water_sched", instance "dut_strict".
+  Expression: sa
+  Instantiated module defined at: "results/pnr/water_sched_final.v", 7
+  Use +lint=PCWM for more details.
+
+
+Warning-[PCWM-W] Port connection width mismatch
+tb/water_sched_tb.v, 140
+"water_sched dut_strict( .clk (clk),  .rst_n (rst_n),  .zone_req ({rs1, rs0}),  .zone_prio ({ps1, ps0}),  .zone_demand ({ds1, ds0}),  .supply_avail (ss),  .supply_valid (ssv),  .valve_open (sv),  .grant_ack (sa),  .cycles_done (scd),  .zone_cycles (szc),  .insufficient (si),  .busy (sbusy),  .status (sstatus));"
+  The following 32-bit expression is connected to 64-bit port "zone_cycles" of
+  module "water_sched", instance "dut_strict".
+  Expression: szc
+  Instantiated module defined at: "results/pnr/water_sched_final.v", 7
+  Use +lint=PCWM for more details.
+
+
+Warning-[DDTC] Duplicate Timing Check is disabled
+/home/masthan5097/SAED32nm_EDK_08_2025/SAED32_EDK/lib/stdcell_rvt/verilog/saed32nm.v, 3798
+  The below duplicate timing check will be disabled:
+  $width(negedge RSTB, 0, 0, notifier);
+
+Starting vcs inline pass...
+19 modules and 3 UDPs read.
+recompiling module water_sched
+recompiling module tb_water_sched
+recompiling module AND2X1_RVT
+recompiling module AND3X1_RVT
+recompiling module AND4X1_RVT
+recompiling module AO21X1_RVT
+recompiling module AO221X1_RVT
+recompiling module AO222X1_RVT
+recompiling module AO22X1_RVT
+recompiling module AOI221X1_RVT
+recompiling module DFFARX1_RVT
+recompiling module HADDX1_RVT
+recompiling module INVX0_RVT
+recompiling module NAND2X0_RVT
+recompiling module NAND3X0_RVT
+recompiling module OA21X1_RVT
+recompiling module OA221X1_RVT
+recompiling module OA222X1_RVT
+recompiling module OAI22X1_RVT
+All of 19 modules done
+rm -f _cuarc*.so _csrc*.so pre_vcsobj_*.so share_vcsobj_*.so
+if [ -x ../results/gls/simv ]; then chmod a-x ../results/gls/simv; fi
+g++  -o ../results/gls/simv      -rdynamic  -Wl,-rpath='$ORIGIN'/simv.daidir -Wl,-rpath=./simv.daidir \
+-Wl,-rpath=/home/masthan5097/synopsys/vcs/W-2024.09-SP2-4/linux64/lib -L/home/masthan5097/synopsys/vcs/W-2024.09-SP2-4/linux64/lib \
+-Wl,-rpath-link=./  /usr/lib64/libnuma.so.1   objs/amcQw_d.o   _71898_archive_1.so \
+objs/udps/LSJP2.o objs/udps/Gjg4Z.o objs/udps/Z0GwU.o   SIM_l.o      rmapats_mop.o \
+rmapats.o rmar.o rmar_nd.o  rmar_llvm_0_1.o rmar_llvm_0_0.o            -lvirsim -lerrorinf \
+-lsnpsmalloc -lvfs    -lvcsnew -ldistsimclient -lsimprofile -luclinative /home/masthan5097/synopsys/vcs/W-2024.09-SP2-4/linux64/lib/vcs_tls.o \
+-Wl,-whole-archive  -lvcsucli    -Wl,-no-whole-archive          /home/masthan5097/synopsys/vcs/W-2024.09-SP2-4/linux64/lib/vcs_save_restore_new.o \
+-ldl  -lc -lm -lpthread -ldl 
+../results/gls/simv up to date
+CPU time: .351 seconds to compile + .214 seconds to elab + .087 seconds to link

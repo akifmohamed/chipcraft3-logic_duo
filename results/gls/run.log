@@ -1,0 +1,79 @@
+Command: /home/masthan5097/chipcraft3-logic_duo/results/gls/simv -l results/gls/run.log
+Chronologic VCS simulator copyright 1991-2024
+Contains Synopsys proprietary information.
+Compiler version W-2024.09-SP2-4_Full64; Runtime version W-2024.09-SP2-4_Full64;  Sep 26 07:07 2026
+=====================================================
+ water_sched self-checking TB  (Team LOGIC DUO)
+=====================================================
+
+T1: reset values
+  [PASS] valves closed after reset
+  [PASS] cycle counter is 0 after reset
+  [PASS] insufficient flag clear
+  [PASS] status = IDLE
+
+T2: single zone (zone1) serve
+  [FAIL] valve1 open exactly SERVE_CYCLES clocks  (t=636000)
+  [PASS] cycles_done = 1 after one serve
+  [PASS] zone1 cycle counter = 1
+
+T3: priority order (z2 high > z1 med > z0 low)
+  [PASS] 3 more cycles done -> total 4
+
+T4: emergency (z3) beats high (z2)
+  [PASS] emergency first, then z2 -> total 6
+
+T5: insufficient supply handling
+  [PASS] insufficient flag raised
+  [PASS] status = WAIT_SUPPLY
+  [PASS] no valve opened while insufficient
+  [PASS] insufficient flag cleared after serve
+
+T6: skip-to-fit (huge emergency waits, small zone goes)
+  [PASS] insufficient still set for waiting z3
+
+T7: randomized soak (one-hot + counter cross-check)
+  [PASS] valves NEVER conflicted during soak
+  [PASS] total cycles == sum of per-zone cycles
+
+T8: async reset during active serve
+  [PASS] valve1 open before reset
+  [PASS] valves forced closed by reset
+  [PASS] counters cleared by reset
+  [PASS] insufficient cleared by reset
+  [PASS] back to IDLE after reset release
+
+T9: equal priorities -> lowest zone index wins
+  [PASS] 4 zones served in index order
+
+T10: pump off -> WAIT + insufficient, no valve
+  [PASS] insufficient when pump off
+  [PASS] status WAIT when pump off
+  [PASS] no valve while pump off
+  [PASS] served after pump restart
+
+T11: started serve always completes (valve safety)
+  [PASS] valve2 open mid-serve
+  [PASS] mid-flush serve completed
+
+T12: all zones emergency -> still index order, back-to-back
+  [PASS] 3 back-to-back serves done
+
+T13: STRICT_PRIO=1 -- stuck HIGH zone blocks lower zone
+  [PASS] strict: insufficient flag set
+  [FAIL] strict: lower zone BLOCKED (no valve!)  (t=7506000)
+  [FAIL] strict: status WAIT  (t=7506000)
+  [FAIL] strict: LOW zone jumped the queue!  (t=7616000)
+  [PASS] strict: stuck HIGH zone served FIRST after refill
+  [PASS] strict: LOW zone served afterwards
+  [FAIL] strict: exactly 2 cycles counted  (t=7986000)
+
+=====================================================
+ TESTS FAILED: 5 error(s)
+=====================================================
+$finish called from file "tb/water_sched_tb.v", line 367.
+$finish at simulation time              7986000
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 7986000 ps
+CPU Time:      0.120 seconds;       Data structure size:   0.5Mb
+Sat Sep 26 07:07:05 2026
